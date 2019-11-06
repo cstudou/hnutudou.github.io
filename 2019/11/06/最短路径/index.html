@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tudou" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="简介： 最短路径算法">
+<meta name="keywords" content="C++,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路径">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84&#x2F;index.html">
+<meta property="og:site_name" content="Tudou">
+<meta property="og:description" content="简介： 最短路径算法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;Mi30sI.jpg">
+<meta property="og:updated_time" content="2019-11-06T13:15:56.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;Mi30sI.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/最短路径/"/>
+
+
+
+
+
+  <title>最短路径 | Tudou</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tudou</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">study & life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tudou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tudou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">最短路径</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T20:13:17+08:00">
+                2019-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">算法笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简介： 最短路径算法</p>
+<a id="more"></a>
+<h1 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h1><p>&emsp;&emsp;时间复杂度O(n²），适用于稠密图。<br>&emsp;&emsp;示例：<br><img src="https://s2.ax1x.com/2019/11/06/Mi30sI.jpg" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">int</span> maxn=<span class="number">510</span>,INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="built_in">int</span> G[maxn][maxn],dis[maxn];            <span class="comment">//G为矩阵，dis为起点到各个点的最短距离</span></span><br><span class="line"><span class="built_in">bool</span> vis[maxn];</span><br><span class="line"><span class="built_in">void</span> dijkstra(<span class="built_in">int</span> s)      <span class="comment">//s为起点 </span></span><br><span class="line">&#123;</span><br><span class="line">	fill(dis, dis+maxn, INF);             <span class="comment">//将距离初始化为INF，即就是无穷大	</span></span><br><span class="line">	d[s]=<span class="number">0</span>;                <span class="comment">//起点到起点的距离为0</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;n; i++)      <span class="comment">//循环n次 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">int</span> u=<span class="number">-1</span>,mi=INF;         </span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>; j&lt;=n; j++)	<span class="comment">//找到为访问顶点中的d[]最小的 </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(vis[j]==<span class="literal">false</span> &amp;&amp; d[j]&lt;mi)</span><br><span class="line">			&#123;</span><br><span class="line">				u=j;</span><br><span class="line">				mi=d[j];</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;  </span><br><span class="line">		<span class="keyword">if</span>(u==<span class="number">-1</span>)	<span class="keyword">return</span> ;            <span class="comment">//如果找不到小于MI的d[]，说明剩下的顶点与起点s不连通      </span></span><br><span class="line">		vis[u]=<span class="literal">true</span>;          <span class="comment">//标记为访问过 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">int</span> v=<span class="number">1</span>; v&lt;=n; v++)</span><br><span class="line">		&#123;       <span class="comment">//如果v没有访问 &amp;&amp; u能到达v &amp;&amp; 以u为中介点能使d[v] 更优</span></span><br><span class="line">			<span class="keyword">if</span>(vis[v]==<span class="literal">false</span> &amp;&amp; G[u][v]!=INF &amp;&amp; d[v]&gt;d[u]+G[u][v])	d[v]=G[u][v]+d[v];    <span class="comment">//优化		</span></span><br><span class="line">		&#125; </span><br><span class="line">	 &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="堆优化版的Dijkstra算法"><a href="#堆优化版的Dijkstra算法" class="headerlink" title="堆优化版的Dijkstra算法"></a>堆优化版的Dijkstra算法</h1><p>&emsp;&emsp;时间复杂度O((m+n)logn)，适用于稀疏图。利用stl中的优先队列来进行优化。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//--------------堆优化</span></span><br><span class="line"><span class="keyword">using</span> PII = pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dij</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fill(dis, dis+maxn, INF);</span><br><span class="line">	dis[s]=<span class="number">0</span>;</span><br><span class="line">	priority_queue&lt;PII, <span class="built_in">vector</span>&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;</span><br><span class="line">	heap.push(&#123;<span class="number">0</span>,s&#125;);         <span class="comment">//s到自己的距离为0   //一定要注意要先写距离再写点，，因为堆排序的时候要用距离作为第一尺度 </span></span><br><span class="line">	<span class="keyword">while</span>(heap.size())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span> t=heap.top();</span><br><span class="line">		heap.pop();</span><br><span class="line">		<span class="keyword">int</span> u=t.second,w=t.first;        <span class="comment">//取出最小的点和该店到源点的最短距离 </span></span><br><span class="line">		<span class="keyword">if</span>(vis[u]) <span class="keyword">continue</span>;              <span class="comment">//可能存在一些冗余边比如2-&gt;3(2);2-&gt;3(4) 后面的被舍弃 </span></span><br><span class="line">		vis[u]=<span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;adj[u].size(); j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=adj[u][j].v;</span><br><span class="line">			<span class="keyword">if</span>(vis[v]==<span class="literal">false</span> &amp;&amp; dis[v]&gt;w+adj[u][j].dis)</span><br><span class="line">			&#123;</span><br><span class="line">				dis[v]=w+adj[u][j].dis;</span><br><span class="line">				heap.push(&#123;dis[v],v&#125;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="folyd-算法"><a href="#folyd-算法" class="headerlink" title="folyd 算法"></a>folyd 算法</h1><p>&emsp;&emsp;时间复杂度为O(n³)</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void floyd()</span><br><span class="line">&#123;</span><br><span class="line">	for(int k=<span class="number">1</span>; k&lt;=n; k++)       //以k为中介，枚举所有顶点 </span><br><span class="line">	&#123;</span><br><span class="line">		for(int i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for(int j=<span class="number">1</span>; j&lt;=n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				if(dis<span class="string">[i]</span><span class="string">[k]</span>!=INF &amp;&amp; dis<span class="string">[k]</span><span class="string">[j]</span>!=INF &amp;&amp; dis<span class="string">[i]</span><span class="string">[k]</span>+dis<span class="string">[k]</span><span class="string">[j]</span>&lt;dis<span class="string">[i]</span><span class="string">[j]</span>)</span><br><span class="line">					dis<span class="string">[i]</span><span class="string">[j]</span>=dis<span class="string">[i]</span><span class="string">[k]</span>+dis<span class="string">[k]</span><span class="string">[j]</span>;               //存的时候要把dis<span class="string">[i]</span><span class="string">[i]</span>设置为<span class="number">0</span>，因为自己到自己的距离为<span class="number">0</span> </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Bellman-算法"><a href="#Bellman-算法" class="headerlink" title="Bellman 算法"></a>Bellman 算法</h1><p>&emsp;&emsp;时间复杂度为O(nm),适用于权值为负的情况</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>,INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> v,dis;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;node&gt; adj[maxn];</span><br><span class="line"><span class="keyword">int</span> m,n,d[maxn],vis[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Bellman</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fill(d,d+maxn,INF);</span><br><span class="line">	d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++)   <span class="comment">//n-1次松弛操作   两个点一条边要一次松弛 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//copy(dis, dis+maxn, ans); //保证不发生串联 如果不加，可能会用更新后的值依次更新后面的节点 ,此时一次只更新一层 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> u=<span class="number">1</span>; u&lt;=n; u++)   <span class="comment">//枚举每一条边 </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;adj[u].size(); j++)   <span class="comment">//如果以u为中介可以使d[v]变小 </span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> v=adj[u][j].v;</span><br><span class="line">				<span class="keyword">int</span> dis=adj[u][j].dis;</span><br><span class="line">				<span class="keyword">if</span>(d[u]+dis&lt;d[v])	d[v]=d[u]+dis;     <span class="comment">//松弛操作 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//if(dis[n] &gt;INF/2)	return false;     //可能会有一条负权边把n号点更新 </span></span><br><span class="line">	<span class="comment">//return true;</span></span><br><span class="line">	<span class="comment">//判断负环</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> u=<span class="number">1</span>; u&lt;=n; u++)     <span class="comment">//如果还能进行松弛操作 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;adj[u].size(); j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=adj[u][j].v;</span><br><span class="line">			<span class="keyword">int</span> dis=adj[u][j].dis;</span><br><span class="line">			<span class="keyword">if</span>(d[u]+dis&lt;d[v])	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="spfa算法"><a href="#spfa算法" class="headerlink" title="spfa算法"></a>spfa算法</h1><p>&emsp;&emsp;一般情况下时间复杂度为O(m)最坏时间复杂度为O(nm),适用于权值为负的情况。对比Bellman算法，spfa只有在松弛操作后才会入队，同样适用于权值为负的情况。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>,INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[maxn];</span><br><span class="line"><span class="keyword">int</span> n,dis[maxn],num[maxn];         <span class="comment">//num数组记录顶点的入队次数 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">SPFA</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fill(dis, dis+maxn, INF); </span><br><span class="line">	dis[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	q.push(s);        <span class="comment">//源点入队</span></span><br><span class="line">	vis[s]=<span class="literal">true</span>;</span><br><span class="line">	num[s]++; <span class="comment">//入队次数加1</span></span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span> u=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		vis[u]=<span class="literal">false</span>;          <span class="comment">//设置u不在队列</span></span><br><span class="line">		<span class="comment">//遍历所有邻边</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;adj[u].size(); j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=adj[u][j].v;</span><br><span class="line">			<span class="keyword">int</span> d=adj[u][j].dis;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+d &lt; dis[v])</span><br><span class="line">			&#123;</span><br><span class="line">				dis[v]=dis[u]+d;</span><br><span class="line">				<span class="keyword">if</span>(!vis[v])     <span class="comment">//v不在队列 </span></span><br><span class="line">				&#123;</span><br><span class="line">					q.push(v);   <span class="comment">//有松弛操作才入队 </span></span><br><span class="line">					vis[v]=<span class="literal">true</span>;</span><br><span class="line">					num[v]++;</span><br><span class="line">					<span class="keyword">if</span>(num[v]&gt;=n)	<span class="keyword">return</span> <span class="literal">false</span>;      <span class="comment">//有可达负环 </span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		 &#125; </span><br><span class="line">	 &#125; </span><br><span class="line">	 <span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">	 </span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/"<i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/06/echo%E6%9C%8D%E5%8A%A1%E5%99%A8%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B/" rel="next" title="echo服务器——基于线程">
+                <i class="fa fa-chevron-left"></i> echo服务器——基于线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg"
+                alt="Tudou" />
+            
+              <p class="site-author-name" itemprop="name">Tudou</p>
+              <p class="site-description motion-element" itemprop="description">study & life</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hnutudou" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-number">1.</span> <span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#堆优化版的Dijkstra算法"><span class="nav-number">2.</span> <span class="nav-text">堆优化版的Dijkstra算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#folyd-算法"><span class="nav-number">3.</span> <span class="nav-text">folyd 算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bellman-算法"><span class="nav-number">4.</span> <span class="nav-text">Bellman 算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spfa算法"><span class="nav-number">5.</span> <span class="nav-text">spfa算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tudou</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
