@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++,算法," />
 
 
 
@@ -81,14 +81,15 @@
 
 
 
-<meta name="description" content="study &amp; life">
-<meta name="keywords" content="CS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tudou">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta name="description" content="简介： KMP算法">
+<meta name="keywords" content="C++,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;KMP&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="study &amp; life">
+<meta property="og:description" content="简介： KMP算法">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-06T13:29:17.198Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/KMP/"/>
 
 
 
 
 
-  <title>Tag: 算法 | Tudou</title>
+  <title>KMP | Tudou</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,194 +239,177 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>算法<small>Tag</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/KMP/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tudou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tudou">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" itemprop="url">
-              
-                <span itemprop="name">字符串哈希</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">KMP</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-06T21:28:24+08:00"
-              content="2019-11-06" >
-          11-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T21:16:49+08:00">
+                2019-11-06
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">算法笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/06/KMP/" itemprop="url">
-              
-                <span itemprop="name">KMP</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-06T21:16:49+08:00"
-              content="2019-11-06" >
-          11-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/06/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" itemprop="url">
-              
-                <span itemprop="name">最短路径</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-06T20:13:17+08:00"
-              content="2019-11-06" >
-          11-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/04/%E5%A4%A7%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/" itemprop="url">
-              
-                <span itemprop="name">大整数运算</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-04T20:06:49+08:00"
-              content="2019-11-04" >
-          11-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" itemprop="url">
-              
-                <span itemprop="name">排序算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-04T20:06:49+08:00"
-              content="2019-11-04" >
-          11-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/04/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" itemprop="url">
-              
-                <span itemprop="name">查找算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-04T20:06:49+08:00"
-              content="2019-11-04" >
-          11-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+        <p>简介： KMP算法</p>
+<a id="more"></a>
+<p>&emsp;&emsp;kmp算法时间复杂度：O(m+n)<br>&emsp;&emsp;在某个字符失配时，该字符对应的next 值会告诉你下一步匹配中，模式串应该跳到哪个位置（跳到next [j] 的位置）。此时不必重新开始匹配。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">10010</span>,M=<span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">char</span> p[N],s[M];</span><br><span class="line"><span class="keyword">int</span> ne[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;p+<span class="number">1</span>&gt;&gt;m&gt;&gt;s+<span class="number">1</span>;</span><br><span class="line">	<span class="comment">//求next的过程， next[1]=0 找前面子集字符串 	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>,j=<span class="number">0</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(j &amp;&amp; p[i]!=p[j+<span class="number">1</span>])	j=ne[j];</span><br><span class="line">		<span class="keyword">if</span>(p[i]==p[j+<span class="number">1</span>])	j++;</span><br><span class="line">		ne[i]=j;</span><br><span class="line">	 &#125; </span><br><span class="line">	 </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">0</span>; i&lt;=m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(j &amp;&amp; p[j+<span class="number">1</span>]!=s[i])	j=ne[j];    <span class="comment">//没有匹配上，求next</span></span><br><span class="line">		<span class="keyword">if</span>(s[i]==p[j+<span class="number">1</span>]) j++;      <span class="comment">//这个字符匹配，求下一个</span></span><br><span class="line">		<span class="keyword">if</span>(j==n)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;i-n&lt;&lt;<span class="string">" "</span>;      <span class="comment">//完全匹配上</span></span><br><span class="line">			j=ne[j];           <span class="comment">//求解下一个 </span></span><br><span class="line">		 &#125; </span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/"<i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/06/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" rel="next" title="最短路径">
+                <i class="fa fa-chevron-left"></i> 最短路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" rel="prev" title="字符串哈希">
+                字符串哈希 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -433,6 +417,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -673,6 +661,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
