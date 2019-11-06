@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux C/C++,网络编程," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="study &amp; life">
-<meta name="keywords" content="CS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;index.html">
+<meta name="description" content="简介： 基于线程的并发编程">
+<meta name="keywords" content="Linux C&#x2F;C++,网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="echo服务器——基于线程">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;echo%E6%9C%8D%E5%8A%A1%E5%99%A8%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="study &amp; life">
+<meta property="og:description" content="简介： 基于线程的并发编程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T08:25:59.836Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;MPrLjK.jpg">
+<meta property="og:updated_time" content="2019-11-06T08:06:12.101Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;MPrLjK.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/echo服务器——基于线程/"/>
 
 
 
 
 
-  <title>categories | Tudou</title>
+  <title>echo服务器——基于线程 | Tudou</title>
   
 
 
@@ -241,40 +243,190 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/echo%E6%9C%8D%E5%8A%A1%E5%99%A8%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tudou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tudou">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/csapp/">csapp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="category-list-count">3</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">echo服务器——基于线程</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T15:45:08+08:00">
+                2019-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>简介： 基于线程的并发编程</p>
+<a id="more"></a>
+<p>#并行方法<br>&emsp;&emsp;前面实现的服务器，一次只能处理一个请求，只有当前的请求处理完了，才能继续处理下一个。<br><img src="https://s2.ax1x.com/2019/11/06/MPrLjK.jpg" alt=""><br>&emsp;&emsp;服务器初始化后listen客户端的connect请求，当客户端向服务器发送connect请求后，服务器accept并且开始等待客户端的输入，客户端 1 write之后转为等待响应(call read)，服务器的read接收到内容之后，发送响应(write) 后进入等待(read)，而客户端 1 接收到了响应(ret read)，最后根据用户指令退出(close)。而只有当客户端 1 断开之后，服务器才会处理客户端 2 的请求。我们可以使用并行的策略，同时处理不同客户端发来的请求。</p>
+<h2 id="基于进程"><a href="#基于进程" class="headerlink" title="基于进程"></a>基于进程</h2><p>&emsp;&emsp;为每个客户端分离出一个单独的进程，是建立了连接之后才开始并行，连接的建立还是串行的。服务器在 accept 中返回 connfd 并且 fork 一个子进程来处理客户端连接。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>每个客户端由独立子进程处理<ul>
+<li>必须回收僵尸进程，来避免严重的内存泄露</li>
+</ul>
+</li>
+<li>不同进程之间不共享数据</li>
+<li>父进程和子进程都有 listenfd 和 connfd，所以在父进程中需要关闭 connfd，在子进程中需要关闭 listenfd<ul>
+<li>内核会保存每个 socket 的引用计数，在 fork 之后 refcnt(connfd) = 2，所以在父进程需要关闭 connfd，这样在子进程结束后引用计数才会为零</li>
+</ul>
+</li>
+</ul>
+<h2 id="基于事件"><a href="#基于事件" class="headerlink" title="基于事件"></a>基于事件</h2><p>&emsp;&emsp;服务器会维护一个 connection 数组，包含若干 connfd，每个输入请求都被当做事件，然后每次从已有的事件中选取一个进行处理。</p>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>由程序员手动控制多个逻辑流</li>
+<li>所有的逻辑流共享同一个地址空间</li>
+<li>这个技术称为 I/O multiplexing</li>
+</ul>
+<h2 id="基于线程"><a href="#基于线程" class="headerlink" title="基于线程"></a>基于线程</h2><p>&emsp;&emsp;<strong>线程</strong>就是运行在进程上下文中的逻辑流<br>&emsp;&emsp;一个进程则包括线程、代码、数据和上下文。也就是说，线程作为单独可执行的部分，被抽离出来了，一个进程可以有多个线程。<br>&emsp;&emsp;每个线程有自己的线程 id，有自己的逻辑控制流，也有自己的用来保存局部变量的栈（其他线程可以修改）但是会共享所有的代码、数据以及内核上下文。和进程不同的是，线程没有一个明确的树状结构（使用 fork 是有明确父进程子进程区分的）。和进程中『并行』的概念一样，如果两个线程的控制流在时间上有『重叠』（或者说有交叉），那么就是并行的。线程共享代码和数据（进程通常不会），线程开销比较小（创建和回收）</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>&emsp;&emsp;</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux-C-C/"<i class="fa fa-tag"></i> Linux C/C++</a>
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"<i class="fa fa-tag"></i> 网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/04/%E5%A4%A7%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97/" rel="next" title="大整数运算">
+                <i class="fa fa-chevron-left"></i> 大整数运算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -309,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -391,6 +552,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于进程"><span class="nav-number">1.</span> <span class="nav-text">基于进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于事件"><span class="nav-number">2.</span> <span class="nav-text">基于事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于线程"><span class="nav-number">3.</span> <span class="nav-text">基于线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number"></span> <span class="nav-text">线程</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
