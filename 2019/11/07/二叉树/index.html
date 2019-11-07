@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="简介： 字符串前缀哈希法">
+<meta name="description" content="简介： 二叉树的一些基本操作">
 <meta name="keywords" content="C++,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串哈希">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C&#x2F;index.html">
+<meta property="og:title" content="二叉树">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E4%BA%8C%E5%8F%89%E6%A0%91&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 字符串前缀哈希法">
+<meta property="og:description" content="简介： 二叉树的一些基本操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-06T13:55:33.932Z">
+<meta property="og:updated_time" content="2019-11-07T11:26:45.811Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/06/字符串哈希/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/07/二叉树/"/>
 
 
 
 
 
-  <title>字符串哈希 | Tudou</title>
+  <title>二叉树 | Tudou</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">字符串哈希</h1>
+          <h1 class="post-title" itemprop="name headline">二叉树</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T21:28:24+08:00">
-                2019-11-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T19:22:28+08:00">
+                2019-11-07
               </time>
             
 
@@ -336,7 +336,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  296
+                  163
                 </span>
               
 
@@ -373,10 +373,14 @@
       
 
       
-        <p>简介： 字符串前缀哈希法</p>
+        <p>简介： 二叉树的一些基本操作</p>
 <a id="more"></a>
-<p>&emsp;&emsp;判断一个字符串两段字符是否相等</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要人品足够好，保证没有冲突现象发生 </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ULL;		<span class="comment">//溢出相当于取模 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>,P=<span class="number">131</span>;  <span class="comment">//p=131或者13331为经验值 ,若哈希值特别大，则需要取模，对2^64取模为经验值 </span></span><br><span class="line">ULL p[maxn],h[maxn];</span><br><span class="line"><span class="keyword">char</span> str[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function">ULL <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span>  <span class="comment">//结果溢出即为取模 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h[r]-h[l<span class="number">-1</span>]*p[r-l+<span class="number">1</span>];           <span class="comment">//公式	高位|--------l-1----相当于乘10的n次-------r|低位  </span></span><br><span class="line">	<span class="comment">//参数为1-l哈希值，1-r哈希值 </span></span><br><span class="line"> &#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;str+<span class="number">1</span>;</span><br><span class="line">	p[<span class="number">0</span>]=<span class="number">1</span>;          <span class="comment">//p的0次方等于1 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		p[i]=p[i<span class="number">-1</span>]*P;             <span class="comment">//预处理p数组，，用于字符串哈希，相当于p进制 </span></span><br><span class="line">		h[i]=h[i<span class="number">-1</span>]*P + str[i];     <span class="comment">//计算哈希值 ，a*p^0 + b*p^2+..... 并且不断取模 </span></span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l1,r1,l2,r2;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;l1&gt;&gt;r1&gt;&gt;l2&gt;&gt;r2;</span><br><span class="line">		<span class="keyword">if</span>(get(l1,r1)==get(l2,r2))	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct <span class="keyword">node</span><span class="title"></span></span><br><span class="line"><span class="title">&#123;</span></span><br><span class="line"><span class="title">	int</span> x;</span><br><span class="line">	<span class="keyword">node</span> <span class="title">*lchild</span>,*rchild;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span> <span class="title">*newNode</span>(int x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">node</span> <span class="title">*Noot</span>=new <span class="keyword">node</span><span class="title">;</span></span><br><span class="line"><span class="title">	Node-</span>&gt;<span class="attr">lchild=</span><span class="keyword">Node</span><span class="title">-&gt;rchild</span>=nullptr;</span><br><span class="line">	<span class="keyword">Node</span><span class="title">-&gt;data</span>=x;</span><br><span class="line">	return <span class="keyword">Node</span><span class="title">;</span></span><br><span class="line"><span class="title">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">insert</span>(<span class="type">node</span> *<span class="built_in">&amp;root</span>, int x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span><span class="built_in">(root</span>==nullptr)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="built_in">	root</span>=newNode(x);</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="built_in">=root</span>-&gt;data)	<span class="keyword">insert</span><span class="built_in">(root</span>-&gt;lchild, x);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">insert</span><span class="built_in">(root</span>-&gt;rchild, x);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">*creat</span>(int data[], int n)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">node</span> <span class="title">*root</span>=nullptr;</span><br><span class="line">	for(int i=<span class="number">0</span>; i<span class="tag">&lt;n; i++)</span></span><br><span class="line"><span class="tag">	&#123;</span></span><br><span class="line"><span class="tag">		insert(root, data[i]);</span></span><br><span class="line"><span class="tag">	&#125;</span></span><br><span class="line"><span class="tag">	return root;</span></span><br><span class="line"><span class="tag">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void research(node *root, int x, int <span class="keyword">new</span><span class="type">data</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==nullptr)	<span class="keyword">return</span> ;  <span class="comment">//找不到</span></span><br><span class="line">	<span class="keyword">if</span>(root-&gt;data==x)	root-&gt;data=<span class="keyword">new</span><span class="type">data</span>;</span><br><span class="line">	research(root-&gt;lchild, x, <span class="keyword">new</span><span class="type">data</span>);      <span class="comment">//递归查找 </span></span><br><span class="line">	research(root-&gt;rchild, x, <span class="keyword">new</span><span class="type">data</span>); </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -408,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/06/KMP/" rel="next" title="KMP">
-                <i class="fa fa-chevron-left"></i> KMP
+              <a href="/2019/11/07/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="next" title="线程同步">
+                <i class="fa fa-chevron-left"></i> 线程同步
               </a>
             
           </div>
@@ -418,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/07/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="prev" title="线程同步">
-                线程同步 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/07/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="prev" title="快速幂">
+                快速幂 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -556,6 +569,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体"><span class="nav-number">1.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建节点"><span class="nav-number">2.</span> <span class="nav-text">新建节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入节点"><span class="nav-number">3.</span> <span class="nav-text">插入节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建树"><span class="nav-number">4.</span> <span class="nav-text">建树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找"><span class="nav-number">5.</span> <span class="nav-text">查找</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

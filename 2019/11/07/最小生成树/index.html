@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="简介： 字符串前缀哈希法">
-<meta name="keywords" content="C++,算法">
+<meta name="description" content="study &amp; life">
+<meta name="keywords" content="CS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串哈希">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C&#x2F;index.html">
+<meta property="og:title" content="最小生成树">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 字符串前缀哈希法">
+<meta property="og:description" content="study &amp; life">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-06T13:55:33.932Z">
+<meta property="og:updated_time" content="2019-11-07T11:33:52.543Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/06/字符串哈希/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/07/最小生成树/"/>
 
 
 
 
 
-  <title>字符串哈希 | Tudou</title>
+  <title>最小生成树 | Tudou</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">字符串哈希</h1>
+          <h1 class="post-title" itemprop="name headline">最小生成树</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T21:28:24+08:00">
-                2019-11-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T19:33:52+08:00">
+                2019-11-07
               </time>
             
 
@@ -292,28 +292,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">算法笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -336,7 +314,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  296
+                  0
                 </span>
               
 
@@ -373,10 +351,7 @@
       
 
       
-        <p>简介： 字符串前缀哈希法</p>
-<a id="more"></a>
-<p>&emsp;&emsp;判断一个字符串两段字符是否相等</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要人品足够好，保证没有冲突现象发生 </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ULL;		<span class="comment">//溢出相当于取模 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>,P=<span class="number">131</span>;  <span class="comment">//p=131或者13331为经验值 ,若哈希值特别大，则需要取模，对2^64取模为经验值 </span></span><br><span class="line">ULL p[maxn],h[maxn];</span><br><span class="line"><span class="keyword">char</span> str[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function">ULL <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span>  <span class="comment">//结果溢出即为取模 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h[r]-h[l<span class="number">-1</span>]*p[r-l+<span class="number">1</span>];           <span class="comment">//公式	高位|--------l-1----相当于乘10的n次-------r|低位  </span></span><br><span class="line">	<span class="comment">//参数为1-l哈希值，1-r哈希值 </span></span><br><span class="line"> &#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;str+<span class="number">1</span>;</span><br><span class="line">	p[<span class="number">0</span>]=<span class="number">1</span>;          <span class="comment">//p的0次方等于1 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		p[i]=p[i<span class="number">-1</span>]*P;             <span class="comment">//预处理p数组，，用于字符串哈希，相当于p进制 </span></span><br><span class="line">		h[i]=h[i<span class="number">-1</span>]*P + str[i];     <span class="comment">//计算哈希值 ，a*p^0 + b*p^2+..... 并且不断取模 </span></span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l1,r1,l2,r2;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;l1&gt;&gt;r1&gt;&gt;l2&gt;&gt;r2;</span><br><span class="line">		<span class="keyword">if</span>(get(l1,r1)==get(l2,r2))	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
       
     </div>
     
@@ -391,14 +366,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
-          
-            <a href="/tags/%E7%AE%97%E6%B3%95/"<i class="fa fa-tag"></i> 算法</a>
-          
-        </div>
-      
 
       
       
@@ -408,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/06/KMP/" rel="next" title="KMP">
-                <i class="fa fa-chevron-left"></i> KMP
+              <a href="/2019/11/07/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="next" title="快速幂">
+                <i class="fa fa-chevron-left"></i> 快速幂
               </a>
             
           </div>
@@ -417,10 +384,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/07/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="prev" title="线程同步">
-                线程同步 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

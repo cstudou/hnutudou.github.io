@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-07T09:40:15.973Z</updated>
+  <updated>2019-11-07T11:33:52.543Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最小生成树</title>
+    <link href="http://yoursite.com/2019/11/07/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/11/07/最小生成树/</id>
+    <published>2019-11-07T11:33:52.000Z</published>
+    <updated>2019-11-07T11:33:52.543Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>快速幂</title>
+    <link href="http://yoursite.com/2019/11/07/%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
+    <id>http://yoursite.com/2019/11/07/快速幂/</id>
+    <published>2019-11-07T11:27:24.000Z</published>
+    <updated>2019-11-07T11:33:02.024Z</updated>
+    
+    <content type="html"><![CDATA[<p>简介： 快速幂求n次方</p><a id="more"></a><p>快速幂的基本思想是把n次看成一个二进制数，每次取末尾的1，其时间复杂度为log2(n)</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">求 m^k mod p，时间复杂度 O(logk)。</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> qmi(<span class="built_in">int</span> m, <span class="built_in">int</span> k, <span class="built_in">int</span> p)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> res = <span class="number">1</span>, t = m;</span><br><span class="line">    <span class="keyword">while</span> (k)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (k&amp;<span class="number">1</span>) res = res * t % p;  <span class="comment">//若此位为1，则相乘 </span></span><br><span class="line">        t = t * t % p;   <span class="comment">//每次都要算乘积 </span></span><br><span class="line">        k &gt;&gt;= <span class="number">1</span>;   <span class="comment">//丢弃算完的这一位 </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简介： 快速幂求n次方&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="算法笔记" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉树</title>
+    <link href="http://yoursite.com/2019/11/07/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/11/07/二叉树/</id>
+    <published>2019-11-07T11:22:28.000Z</published>
+    <updated>2019-11-07T11:26:45.811Z</updated>
+    
+    <content type="html"><![CDATA[<p>简介： 二叉树的一些基本操作</p><a id="more"></a><h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct <span class="keyword">node</span><span class="title"></span></span><br><span class="line"><span class="title">&#123;</span></span><br><span class="line"><span class="title">int</span> x;</span><br><span class="line"><span class="keyword">node</span> <span class="title">*lchild</span>,*rchild;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h1 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span> <span class="title">*newNode</span>(int x)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">node</span> <span class="title">*Noot</span>=new <span class="keyword">node</span><span class="title">;</span></span><br><span class="line"><span class="title">Node-</span>&gt;<span class="attr">lchild=</span><span class="keyword">Node</span><span class="title">-&gt;rchild</span>=nullptr;</span><br><span class="line"><span class="keyword">Node</span><span class="title">-&gt;data</span>=x;</span><br><span class="line">return <span class="keyword">Node</span><span class="title">;</span></span><br><span class="line"><span class="title">&#125;</span></span><br></pre></td></tr></table></figure><h1 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">insert</span>(<span class="type">node</span> *<span class="built_in">&amp;root</span>, int x)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span><span class="built_in">(root</span>==nullptr)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">root</span>=newNode(x);</span><br><span class="line"><span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(x&lt;<span class="built_in">=root</span>-&gt;data)<span class="keyword">insert</span><span class="built_in">(root</span>-&gt;lchild, x);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">insert</span><span class="built_in">(root</span>-&gt;rchild, x);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h1 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">*creat</span>(int data[], int n)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">node</span> <span class="title">*root</span>=nullptr;</span><br><span class="line">for(int i=<span class="number">0</span>; i<span class="tag">&lt;n; i++)</span></span><br><span class="line"><span class="tag">&#123;</span></span><br><span class="line"><span class="tag">insert(root, data[i]);</span></span><br><span class="line"><span class="tag">&#125;</span></span><br><span class="line"><span class="tag">return root;</span></span><br><span class="line"><span class="tag">&#125;</span></span><br></pre></td></tr></table></figure><h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void research(node *root, int x, int <span class="keyword">new</span><span class="type">data</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(root==nullptr)<span class="keyword">return</span> ;  <span class="comment">//找不到</span></span><br><span class="line"><span class="keyword">if</span>(root-&gt;data==x)root-&gt;data=<span class="keyword">new</span><span class="type">data</span>;</span><br><span class="line">research(root-&gt;lchild, x, <span class="keyword">new</span><span class="type">data</span>);      <span class="comment">//递归查找 </span></span><br><span class="line">research(root-&gt;rchild, x, <span class="keyword">new</span><span class="type">data</span>); </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简介： 二叉树的一些基本操作&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="算法笔记" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>线程同步</title>
