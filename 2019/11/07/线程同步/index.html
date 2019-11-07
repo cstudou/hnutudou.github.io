@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法," />
+  <meta name="keywords" content="Linux C/C++,网络编程," />
 
 
 
@@ -81,16 +81,20 @@
 
 
 
-<meta name="description" content="简介： 常用的查找算法">
-<meta name="keywords" content="C++,算法">
+<meta name="description" content="简介： 如何解决线程的同步问题">
+<meta name="keywords" content="Linux C&#x2F;C++,网络编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查找算法">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta property="og:title" content="线程同步">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 常用的查找算法">
+<meta property="og:description" content="简介： 如何解决线程的同步问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T12:15:41.887Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;MkaTzV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;MkwTDU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;Mk03Ps.png">
+<meta property="og:updated_time" content="2019-11-07T08:31:21.301Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;MkaTzV.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/04/查找算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/07/线程同步/"/>
 
 
 
 
 
-  <title>查找算法 | Tudou</title>
+  <title>线程同步 | Tudou</title>
   
 
 
@@ -253,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">查找算法</h1>
+          <h1 class="post-title" itemprop="name headline">线程同步</h1>
         
 
         <div class="post-meta">
@@ -282,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-04T20:06:49+08:00">
-                2019-11-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T15:36:43+08:00">
+                2019-11-07
               </time>
             
 
@@ -305,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">算法笔记</span>
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
                   </a>
                 </span>
 
@@ -336,7 +340,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  307
+                  601
                 </span>
               
 
@@ -352,7 +356,7 @@
                   <span class="post-meta-item-text"> 阅读时长&asymp;</span>
                 
                 <span title="Reading time">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -373,14 +377,13 @@
       
 
       
-        <p>简介： 常用的查找算法</p>
+        <p>简介： 如何解决线程的同步问题</p>
 <a id="more"></a>
-<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>&emsp;&emsp;每次去中点mid，然后将区间分为两部分</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">*			二分查找  区间为【<span class="built_in">left</span>，<span class="built_in">right</span>】，均为闭区间，传入的初始值为【<span class="number">0</span>，<span class="built_in">n</span>-<span class="number">1</span>】 </span><br><span class="line">*/ </span><br><span class="line"><span class="built_in">int</span> BinarySearch(<span class="built_in">int</span> A[], <span class="built_in">int</span> <span class="built_in">left</span>, <span class="built_in">int</span> <span class="built_in">right</span>, <span class="built_in">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">mid</span>;</span><br><span class="line">	while(<span class="built_in">left</span>&lt;=<span class="built_in">right</span>)             //此处为&lt;= </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mid</span>=(<span class="built_in">left</span>+<span class="built_in">right</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="built_in">if</span>(A[<span class="built_in">mid</span>]==x)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="built_in">mid</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		else <span class="built_in">if</span>(A[<span class="built_in">mid</span>]&gt;x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">right</span>=<span class="built_in">mid</span>-<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">left</span>=<span class="built_in">mid</span>+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -<span class="number">1</span>;              //查找失败 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二分查找-将区间分为-left-mid-1-mid-right"><a href="#二分查找-将区间分为-left-mid-1-mid-right" class="headerlink" title="二分查找(将区间分为[left,mid-1],[mid, right])"></a>二分查找(将区间分为[left,mid-1],[mid, right])</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用</span></span><br><span class="line"><span class="built_in">int</span> bsearch_1(<span class="built_in">int</span> l, <span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">int</span> mid=l+r+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	l=mid;</span><br><span class="line">		<span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二分查找-将区间分为-left-mid-mid-1-right"><a href="#二分查找-将区间分为-left-mid-mid-1-right" class="headerlink" title="二分查找(将区间分为[left, mid],[mid+1, right])"></a>二分查找(将区间分为[left, mid],[mid+1, right])</h1><p>&emsp;&emsp;此时计算mid时需要取left+right&gt;&gt;1。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用</span></span><br><span class="line"><span class="built_in">int</span> bsearch_1(<span class="built_in">int</span> l, <span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	r=mid;</span><br><span class="line">		<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浮点数二分</span></span><br><span class="line"><span class="built_in">double</span> bsearch_1(<span class="built_in">double</span> l, <span class="built_in">double</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="built_in">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;eps)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">double</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	r=mid;</span><br><span class="line">		<span class="keyword">else</span>	l=mid;	</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="共享变量"><a href="#共享变量" class="headerlink" title="共享变量"></a>共享变量</h1><p>&emsp;&emsp;一个变量v是<strong>同步</strong>的，当且仅当它的一个实例被一个以上的线程引用。<br>&emsp;&emsp;每个线程都有它自己独立的上下文，包括<strong>线程ID、栈、栈指针、PC、条件码和通用目的寄存器值</strong>。每个线程和其他线程共享进程上下文的剩余部分，这包括整个用户虚拟地址空间，它是由制度文本（代码）、读/写数据、堆以及所有的共享库代码和数据区域组成的。在实际的线程内存模型中，寄存器的值虽然是隔离且被保护的，但是在栈中的值并不是这样的（其他线程也可以访问）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> **ptr;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread</span><span class="params">(<span class="keyword">void</span> *vargp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> myid=(<span class="keyword">int</span>)vargp;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"[%d]: %s (cnt=%d)\n"</span>, myid, ptr[myid], ++cnt);   <span class="comment">//每个线程都可以访问全局变量 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">pthread_t</span> tid;</span><br><span class="line">	<span class="keyword">char</span>* msgs[N]=</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">"hello from foo"</span>,</span><br><span class="line">		<span class="string">"hello from bar"</span>	</span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line">	ptr = msgs;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		pthread_create(&amp;tid, <span class="literal">NULL</span>, thread, (<span class="keyword">void</span> *)i);</span><br><span class="line">	&#125;</span><br><span class="line">	pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="用信号量同步线程"><a href="#用信号量同步线程" class="headerlink" title="用信号量同步线程"></a>用信号量同步线程</h1><h2 id="同步不正确的计数器程序"><a href="#同步不正确的计数器程序" class="headerlink" title="同步不正确的计数器程序"></a>同步不正确的计数器程序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="comment">//volatile long cnt=0; //系统总是重新从它所在的内存读取数据，即使它前面的指令刚刚从该处读取过数据。</span></span><br><span class="line"><span class="keyword">long</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread</span><span class="params">(<span class="keyword">void</span> *vargp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i, niters=*((<span class="keyword">long</span> *)vargp);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;niters; i++)	cnt++;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> niters=<span class="number">1000000</span>;</span><br><span class="line">	<span class="keyword">pthread_t</span> tid1, tid2;</span><br><span class="line"><span class="comment">//	if(argc != 2)</span></span><br><span class="line"><span class="comment">//	&#123;</span></span><br><span class="line"><span class="comment">//		fprintf(stderr, "usage: %s &lt;niters&gt;\n", argv[0]);</span></span><br><span class="line"><span class="comment">//		return 0;</span></span><br><span class="line"><span class="comment">//	&#125;</span></span><br><span class="line"><span class="comment">//	niters=atoi(argv[1]);   //把字符串转换为整形数,参数为const char *,C++使用时需调用.c_str()</span></span><br><span class="line">	<span class="comment">// 创建一个线程并且等待它们终止</span></span><br><span class="line">	pthread_create(&amp;tid1, <span class="literal">NULL</span>, thread, &amp;niters); </span><br><span class="line">	pthread_create(&amp;tid2, <span class="literal">NULL</span>, thread, &amp;niters);</span><br><span class="line">	pthread_join(tid1, <span class="literal">NULL</span>);</span><br><span class="line">	pthread_join(tid2, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="comment">//检查结果</span></span><br><span class="line">	<span class="keyword">if</span>(cnt != (<span class="number">2</span>*niters))	<span class="built_in">printf</span>(<span class="string">"BOOM! cnt=%ld\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"OK cnt=%ld\n"</span>, cnt);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>); </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果为：<br><img src="https://s2.ax1x.com/2019/11/07/MkaTzV.png" alt=""><br>可见结果并不像预期的一样时2*niters,这是因为我们没有办法预测操作系统是否将为你的线程选择一个正确的顺序。<br>汇编代码为：<br><img src="https://s2.ax1x.com/2019/11/07/MkwTDU.png" alt=""><br>比如按如下指令顺序次序执行，会得到一个错误的值：<br><img src="https://s2.ax1x.com/2019/11/07/Mk03Ps.png" alt=""><br>关于volatile关键字可以参考：<a href="https://blog.csdn.net/ijn842/article/details/81273232" target="_blank" rel="noopener">https://blog.csdn.net/ijn842/article/details/81273232</a></p>
+
       
     </div>
     
@@ -397,9 +400,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+            <a href="/tags/Linux-C-C/"<i class="fa fa-tag"></i> Linux C/C++</a>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/"<i class="fa fa-tag"></i> 算法</a>
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"<i class="fa fa-tag"></i> 网络编程</a>
           
         </div>
       
@@ -412,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/04/echo%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="echo服务器">
-                <i class="fa fa-chevron-left"></i> echo服务器
+              <a href="/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" rel="next" title="字符串哈希">
+                <i class="fa fa-chevron-left"></i> 字符串哈希
               </a>
             
           </div>
@@ -421,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="prev" title="排序算法">
-                排序算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找"><span class="nav-number">1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找-将区间分为-left-mid-1-mid-right"><span class="nav-number">2.</span> <span class="nav-text">二分查找(将区间分为[left,mid-1],[mid, right])</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找-将区间分为-left-mid-mid-1-right"><span class="nav-number">3.</span> <span class="nav-text">二分查找(将区间分为[left, mid],[mid+1, right])</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浮点数二分"><span class="nav-number">4.</span> <span class="nav-text">浮点数二分</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#共享变量"><span class="nav-number">1.</span> <span class="nav-text">共享变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用信号量同步线程"><span class="nav-number">2.</span> <span class="nav-text">用信号量同步线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步不正确的计数器程序"><span class="nav-number">2.1.</span> <span class="nav-text">同步不正确的计数器程序</span></a></li></ol></li></ol></div>
             
 
           </div>
