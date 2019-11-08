@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-07T12:44:39.204Z</updated>
+  <updated>2019-11-08T04:46:04.449Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数论知识</title>
+    <link href="http://yoursite.com/2019/11/08/%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/11/08/数论知识/</id>
+    <published>2019-11-08T04:45:36.000Z</published>
+    <updated>2019-11-08T04:46:04.449Z</updated>
+    
+    <content type="html"><![CDATA[<p>简介： 一些常见的数论问题</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;简介： 一些常见的数论问题&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="算法笔记" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>哈希表</title>
+    <link href="http://yoursite.com/2019/11/07/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    <id>http://yoursite.com/2019/11/07/哈希表/</id>
+    <published>2019-11-07T13:13:14.213Z</published>
+    <updated>2019-11-08T04:43:44.165Z</updated>
+    
+    <content type="html"><![CDATA[<p>简介： 如何建立哈希表 &amp; 如何解决冲突</p><a id="more"></a><p>&emsp;&emsp;哈希表：是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p><h1 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h1><p>&emsp;&emsp;把所有对maxn取模相等的数存在一起</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//stl</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; vi(<span class="number">100010</span>);   <span class="comment">//定义100010个空间，值不确定</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> k=(x%maxn+maxn)%maxn;      <span class="comment">//如 10%3=-1 </span></span><br><span class="line">vi[k].push_back(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//数组模拟</span></span><br><span class="line"><span class="keyword">int</span> ans[maxn],e[maxn],ne[maxn],idx;</span><br><span class="line"><span class="keyword">int</span> n,x;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span>   <span class="comment">//头插法</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> k=(x%maxn+maxn)%maxn;      <span class="comment">//如 10%3=-1 </span></span><br><span class="line">e[idx]=x;</span><br><span class="line">ne[idx]=ans[k];</span><br><span class="line">ans[k]=idx++;            <span class="comment">//ans[k]为head </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> k=(x%maxn + maxn) % maxn;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=ans[k]; i!=<span class="number">-1</span>; i=ne[i])  <span class="comment">//从前往后找next</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(e[i]==x)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//需要在main中//fill(ans, ans+maxn, -1);    //初始化为-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">fill(ans, ans+maxn, <span class="number">-1</span>);        <span class="comment">//初始化为-1 </span></span><br><span class="line"><span class="keyword">while</span>(n--)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;s&gt;&gt;x;</span><br><span class="line"><span class="keyword">if</span>(s==<span class="string">"I"</span>)</span><br><span class="line">&#123;</span><br><span class="line">insert(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(find(x))<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">else</span><span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h1><p>&emsp;&emsp;不断向后找坑位，找到就占住</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">200010</span>,N=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> ans[maxn],e[maxn],ne[maxn],idx;</span><br><span class="line"><span class="keyword">int</span> n,x;</span><br></pre></td></tr></table></figure><p>核心代码：</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> find(<span class="built_in">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">int</span> k=(x%maxn + maxn) % maxn;</span><br><span class="line"><span class="keyword">while</span>(ans[k]!=N &amp;&amp; ans[k]!=x)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//找下一个坑</span></span><br><span class="line">k++;</span><br><span class="line"><span class="keyword">if</span>(k==maxn)k=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> x;       <span class="comment">//若没插入，则返回插入位置</span></span><br><span class="line">                <span class="comment">//若插入了，返回数所在的位置 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line"><span class="comment">//fill(ans, ans+maxn, -1);        //初始化为-1 </span></span><br><span class="line"><span class="built_in">memset</span>(ans,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(ans)); <span class="comment">//按字节 </span></span><br><span class="line"><span class="keyword">while</span>(n--)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;s&gt;&gt;x;</span><br><span class="line"><span class="keyword">if</span>(s==<span class="string">"I"</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> k=find(x);</span><br><span class="line">ans[k]=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> k=find(x);</span><br><span class="line"><span class="keyword">if</span>(ans[k]!=null)<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">else</span><span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简介： 如何建立哈希表 &amp;amp; 如何解决冲突&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="算法笔记" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>并查集</title>
