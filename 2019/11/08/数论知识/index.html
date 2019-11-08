@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="简介： 一些常见的数论问题">
+<meta name="description" content="简介： 一些常见的数论问题 线性筛法求素数&amp;emsp;&amp;emsp;每次都用其最小质因子筛，如果不是素数，就把它筛去 12345678910111213141516线性筛法求素数 int primes[N], cnt;     &#x2F;&#x2F; primes[]存储所有素数bool st[N];         &#x2F;&#x2F; st[x]存储x是否被筛掉void get_primes(int n)&amp;#123;    fo">
 <meta name="keywords" content="C++,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数论知识">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 一些常见的数论问题">
+<meta property="og:description" content="简介： 一些常见的数论问题 线性筛法求素数&amp;emsp;&amp;emsp;每次都用其最小质因子筛，如果不是素数，就把它筛去 12345678910111213141516线性筛法求素数 int primes[N], cnt;     &#x2F;&#x2F; primes[]存储所有素数bool st[N];         &#x2F;&#x2F; st[x]存储x是否被筛掉void get_primes(int n)&amp;#123;    fo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-08T04:46:04.449Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;MZYagP.jpg">
+<meta property="og:updated_time" content="2019-11-08T11:42:39.598Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;MZYagP.jpg">
 
 
 
@@ -336,7 +338,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  11
+                  794
                 </span>
               
 
@@ -352,7 +354,7 @@
                   <span class="post-meta-item-text"> 阅读时长&asymp;</span>
                 
                 <span title="Reading time">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -374,7 +376,21 @@
 
       
         <p>简介： 一些常见的数论问题</p>
-
+<h1 id="线性筛法求素数"><a href="#线性筛法求素数" class="headerlink" title="线性筛法求素数"></a>线性筛法求素数</h1><p>&emsp;&emsp;每次都用其最小质因子筛，如果不是素数，就把它筛去</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">线性筛法求素数 </span><br><span class="line"><span class="built_in">int</span> primes[N], cnt;     <span class="comment">// primes[]存储所有素数</span></span><br><span class="line"><span class="built_in">bool</span> st[N];         <span class="comment">// st[x]存储x是否被筛掉</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">void</span> get_primes(<span class="built_in">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">2</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!st[i]) primes[cnt ++ ] = i;   <span class="comment">//当前i没有被筛过 </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; primes[j] &lt;= n / i; j ++ )   <span class="comment">//枚举所有质数 </span></span><br><span class="line">        &#123;</span><br><span class="line">            st[primes[j] * i] = <span class="literal">true</span>;   <span class="comment">//用最小质因子筛，等于true就不会加入队列 </span></span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>) <span class="keyword">break</span>;  <span class="comment">//primers[j]是i的最小质因子，退出</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="欧几里得算法-求最大公约数"><a href="#欧几里得算法-求最大公约数" class="headerlink" title="欧几里得算法-求最大公约数"></a>欧几里得算法-求最大公约数</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">欧几里得算法 </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? gcd(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h1><p>&emsp;&emsp;欧拉函数表示1-N中与N互质的数的个数</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">结论： P(N)表示 <span class="number">1</span> ~ N 中与 N互质的数的个数</span><br><span class="line">N=p1^a1×p2^a2×……×pn^an   <span class="comment">//分解质因数 </span></span><br><span class="line">P(N)=N(<span class="number">1</span><span class="number">-1</span>/p1)(<span class="number">1</span><span class="number">-1</span>/p2)……(<span class="number">1</span><span class="number">-1</span>/pn)</span><br></pre></td></tr></table></figure>
+<p>主要代码</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> phi(<span class="built_in">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> res = x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">2</span>; i &lt;= x / i; i ++ )</span><br><span class="line">        <span class="keyword">if</span> (x % i == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            res = res / i * (i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (x % i == <span class="number">0</span>) x /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">1</span>) res = res / x * (x - <span class="number">1</span>);   <span class="comment">//最后x如果不等于1，说明现在它是原来x的一个质因数 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="线性筛法求欧拉函数"><a href="#线性筛法求欧拉函数" class="headerlink" title="线性筛法求欧拉函数"></a>线性筛法求欧拉函数</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> primes[N], cnt;     <span class="comment">// primes[]存储所有素数</span></span><br><span class="line"><span class="built_in">int</span> euler[N];           <span class="comment">// 存储每个数的欧拉函数</span></span><br><span class="line"><span class="built_in">bool</span> st[N];         <span class="comment">// st[x]存储x是否被筛掉</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">void</span> get_eulers(<span class="built_in">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    euler[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">2</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!st[i])</span><br><span class="line">        &#123;</span><br><span class="line">            primes[cnt ++ ] = i;</span><br><span class="line">            euler[i] = i - <span class="number">1</span>;   <span class="comment">//一个数是质数，其欧拉函数值为i-1 ，因为前面i-1个数都与他互质 </span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; primes[j] &lt;= n / i; j ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> t = primes[j] * i;</span><br><span class="line">            st[t] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                euler[t] = euler[i] * primes[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            euler[t] = euler[i] * (primes[j] - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h1><p>&emsp;&emsp;马小定理(Fermat’s little theorem)是数论中的一个重要定理，在1636年提出。如果p是一个质数，而整数a不是p的倍数，则有<code>a^（p-1）≡1（mod p）</code></p>
+<h1 id="扩展的欧几里得算法"><a href="#扩展的欧几里得算法" class="headerlink" title="扩展的欧几里得算法"></a>扩展的欧几里得算法</h1><p>&emsp;&emsp;如果a、b是整数，那么一定存在整数x、y使得ax+by=gcd(a,b)<br><img src="https://s2.ax1x.com/2019/11/08/MZYagP.jpg" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求x, y，使得ax + by = gcd(a, b)</span></span><br><span class="line"><span class="built_in">int</span> exgcd(<span class="built_in">int</span> a, <span class="built_in">int</span> b, <span class="built_in">int</span> &amp;x, <span class="built_in">int</span> &amp;y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!b)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>; y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> d = exgcd(b, a % b, y, x);  <span class="comment">//倒过来写 </span></span><br><span class="line">    y -= (a/b) * x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">		exgcd(b,a%b,x,y);</span></span><br><span class="line"><span class="comment">	    int temp=x;</span></span><br><span class="line"><span class="comment">	    x=y;</span></span><br><span class="line"><span class="comment">	    y=temp-(a/b)*y;</span></span><br><span class="line"><span class="comment">	*/</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h1><p>&emsp;&emps;若a*x≡1(mod b),且a与b互质，我们定义x是a的逆元，记为a^(-1)，所以也可以说x是a在mod b意义下的倒数</p>
+<h2 id="扩展的欧几里得算法求"><a href="#扩展的欧几里得算法求" class="headerlink" title="扩展的欧几里得算法求"></a>扩展的欧几里得算法求</h2><figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void exgcd(LL a, LL b, LL &amp;<span class="symbol">x</span>, LL &amp;<span class="symbol">y</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keywords">if</span>(b==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="symbol">x</span>=<span class="number">1</span>;<span class="symbol">y</span>=<span class="number">0</span>;</span><br><span class="line">		<span class="keywords">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	exgcd(b,a%b,<span class="symbol">x</span>,<span class="symbol">y</span>);</span><br><span class="line">	int temp=<span class="symbol">x</span>;</span><br><span class="line">	<span class="symbol">x</span>=<span class="symbol">y</span>%<span class="keywords">mod</span>;</span><br><span class="line">	<span class="symbol">y</span>=(temp-(a/b)*<span class="symbol">y</span>)%<span class="keywords">mod</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="费马小定理求"><a href="#费马小定理求" class="headerlink" title="费马小定理求"></a>费马小定理求</h2><p>&emsp;&emsp;用快速幂求p的mod-2次方即为逆元</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fuck</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1</span>,t=a;;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res=res*t%maxn;</span><br><span class="line">        t=t*t%maxn;</span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -415,6 +431,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/08/%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0/" rel="prev" title="求组合数">
+                求组合数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -468,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -488,7 +517,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -550,6 +579,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性筛法求素数"><span class="nav-number">1.</span> <span class="nav-text">线性筛法求素数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#欧几里得算法-求最大公约数"><span class="nav-number">2.</span> <span class="nav-text">欧几里得算法-求最大公约数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#欧拉函数"><span class="nav-number">3.</span> <span class="nav-text">欧拉函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性筛法求欧拉函数"><span class="nav-number">4.</span> <span class="nav-text">线性筛法求欧拉函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#费马小定理"><span class="nav-number">5.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展的欧几里得算法"><span class="nav-number">6.</span> <span class="nav-text">扩展的欧几里得算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逆元"><span class="nav-number">7.</span> <span class="nav-text">逆元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展的欧几里得算法求"><span class="nav-number">7.1.</span> <span class="nav-text">扩展的欧几里得算法求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#费马小定理求"><span class="nav-number">7.2.</span> <span class="nav-text">费马小定理求</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
