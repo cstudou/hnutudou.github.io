@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Trie</title>
+    <url>/2019/11/14/Trie/</url>
+    <content><![CDATA[<p>简介： 字典树</p>
+<a id="more"></a>
+<p>&emsp;&emsp;Trie字典树主要用于存储字符串，Trie 的每个 Node 保存一个字符。用链表来描述的话，就是一个字符串就是一个链表。每个Node都保存了它的所有子节点。例如我们往字典树中插入see、pain、paint三个单词:</p>
+<p><img src="https://s2.ax1x.com/2019/11/14/MNHZkV.png" alt=""></p>
+<h1 id="构建函数"><a href="#构建函数" class="headerlink" title="构建函数"></a>构建函数</h1><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> insert(<span class="keyword">char</span> <span class="keyword">str</span>[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> p=<span class="number">0</span>;          <span class="comment">//第p个节点 ，0为根节点又为空节点 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; <span class="keyword">str</span>[i]; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=<span class="keyword">str</span>[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!son[p][u])	son[p][u]=++idx;	</span><br><span class="line">		p=son[p][u];         <span class="comment">//下一个字母 </span></span><br><span class="line">	&#125;</span><br><span class="line">	cnt[p]++;       <span class="comment">//以p结尾的单词数量多了一个 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查询函数"><a href="#查询函数" class="headerlink" title="查询函数"></a>查询函数</h1><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> query(<span class="keyword">char</span> <span class="keyword">str</span>[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; <span class="keyword">str</span>[i]; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=<span class="keyword">str</span>[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!son[p][u])	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		p=son[p][u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>echo-预线程化</title>
     <url>/2019/11/10/echo-%E9%A2%84%E7%BA%BF%E7%A8%8B%E5%8C%96/</url>
     <content><![CDATA[<p>简介： 基于预线程化的echo服务器</p>

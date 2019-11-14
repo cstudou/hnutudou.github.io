@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="study &amp; life">
+<meta name="description" content="简介： 字典树">
 <meta name="keywords" content="CS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="home">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trie">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;Trie&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="study &amp; life">
+<meta property="og:description" content="简介： 字典树">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T08:23:45.233Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;MNHZkV.png">
+<meta property="og:updated_time" content="2019-11-14T13:13:52.799Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;MNHZkV.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/home/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/14/Trie/"/>
 
 
 
 
 
-  <title>home | Tudou</title>
+  <title>Trie | Tudou</title>
   
 
 
@@ -241,33 +243,195 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/Trie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tudou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tudou">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">home</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Trie</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-14T21:02:30+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">算法笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数:</span>
+                
+                <span title="Words count in article">
+                  198
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> 阅读时长&asymp;</span>
+                
+                <span title="Reading time">
+                  1分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>简介： 字典树</p>
+<a id="more"></a>
+<p>&emsp;&emsp;Trie字典树主要用于存储字符串，Trie 的每个 Node 保存一个字符。用链表来描述的话，就是一个字符串就是一个链表。每个Node都保存了它的所有子节点。例如我们往字典树中插入see、pain、paint三个单词:</p>
+<p><img src="https://s2.ax1x.com/2019/11/14/MNHZkV.png" alt=""></p>
+<h1 id="构建函数"><a href="#构建函数" class="headerlink" title="构建函数"></a>构建函数</h1><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> insert(<span class="keyword">char</span> <span class="keyword">str</span>[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> p=<span class="number">0</span>;          <span class="comment">//第p个节点 ，0为根节点又为空节点 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; <span class="keyword">str</span>[i]; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=<span class="keyword">str</span>[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!son[p][u])	son[p][u]=++idx;	</span><br><span class="line">		p=son[p][u];         <span class="comment">//下一个字母 </span></span><br><span class="line">	&#125;</span><br><span class="line">	cnt[p]++;       <span class="comment">//以p结尾的单词数量多了一个 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查询函数"><a href="#查询函数" class="headerlink" title="查询函数"></a>查询函数</h1><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> query(<span class="keyword">char</span> <span class="keyword">str</span>[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; <span class="keyword">str</span>[i]; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=<span class="keyword">str</span>[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!son[p][u])	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		p=son[p][u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/10/echo-%E9%A2%84%E7%BA%BF%E7%A8%8B%E5%8C%96/" rel="next" title="echo-预线程化">
+                <i class="fa fa-chevron-left"></i> echo-预线程化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -302,8 +466,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -384,6 +557,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建函数"><span class="nav-number">1.</span> <span class="nav-text">构建函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询函数"><span class="nav-number">2.</span> <span class="nav-text">查询函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
