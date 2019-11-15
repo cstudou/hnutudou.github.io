@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="简介： 常用的查找算法">
+<meta name="description" content="简介： 拓扑排序算法">
 <meta name="keywords" content="C++,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查找算法">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta property="og:title" content="拓扑排序">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 常用的查找算法">
+<meta property="og:description" content="简介： 拓扑排序算法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T12:15:41.887Z">
+<meta property="og:updated_time" content="2019-11-15T13:26:09.351Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/04/查找算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/15/拓扑排序/"/>
 
 
 
 
 
-  <title>查找算法 | Tudou</title>
+  <title>拓扑排序 | Tudou</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/15/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">查找算法</h1>
+          <h1 class="post-title" itemprop="name headline">拓扑排序</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-04T20:06:49+08:00">
-                2019-11-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-15T21:11:01+08:00">
+                2019-11-15
               </time>
             
 
@@ -336,7 +336,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  307
+                  254
                 </span>
               
 
@@ -373,14 +373,10 @@
       
 
       
-        <p>简介： 常用的查找算法</p>
+        <p>简介： 拓扑排序算法</p>
 <a id="more"></a>
-<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>&emsp;&emsp;每次去中点mid，然后将区间分为两部分</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">*			二分查找  区间为【<span class="built_in">left</span>，<span class="built_in">right</span>】，均为闭区间，传入的初始值为【<span class="number">0</span>，<span class="built_in">n</span>-<span class="number">1</span>】 </span><br><span class="line">*/ </span><br><span class="line"><span class="built_in">int</span> BinarySearch(<span class="built_in">int</span> A[], <span class="built_in">int</span> <span class="built_in">left</span>, <span class="built_in">int</span> <span class="built_in">right</span>, <span class="built_in">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">mid</span>;</span><br><span class="line">	while(<span class="built_in">left</span>&lt;=<span class="built_in">right</span>)             //此处为&lt;= </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">mid</span>=(<span class="built_in">left</span>+<span class="built_in">right</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="built_in">if</span>(A[<span class="built_in">mid</span>]==x)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="built_in">mid</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		else <span class="built_in">if</span>(A[<span class="built_in">mid</span>]&gt;x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">right</span>=<span class="built_in">mid</span>-<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">left</span>=<span class="built_in">mid</span>+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -<span class="number">1</span>;              //查找失败 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二分查找-将区间分为-left-mid-1-mid-right"><a href="#二分查找-将区间分为-left-mid-1-mid-right" class="headerlink" title="二分查找(将区间分为[left,mid-1],[mid, right])"></a>二分查找(将区间分为[left,mid-1],[mid, right])</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用</span></span><br><span class="line"><span class="built_in">int</span> bsearch_1(<span class="built_in">int</span> l, <span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">int</span> mid=l+r+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	l=mid;</span><br><span class="line">		<span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二分查找-将区间分为-left-mid-mid-1-right"><a href="#二分查找-将区间分为-left-mid-mid-1-right" class="headerlink" title="二分查找(将区间分为[left, mid],[mid+1, right])"></a>二分查找(将区间分为[left, mid],[mid+1, right])</h1><p>&emsp;&emsp;此时计算mid时需要取left+right&gt;&gt;1。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用</span></span><br><span class="line"><span class="built_in">int</span> bsearch_1(<span class="built_in">int</span> l, <span class="built_in">int</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	r=mid;</span><br><span class="line">		<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浮点数二分</span></span><br><span class="line"><span class="built_in">double</span> bsearch_1(<span class="built_in">double</span> l, <span class="built_in">double</span> r)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="built_in">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;eps)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">double</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))	r=mid;</span><br><span class="line">		<span class="keyword">else</span>	l=mid;	</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以求出拓扑序列</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; adj[maxn],ans;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> indegree[maxn],n,m;  <span class="comment">//indegree是用来存每个节点的入度 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">topologicalSort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(indegree[i]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			q.push(i);</span><br><span class="line">		<span class="comment">//	cout&lt;&lt;i&lt;&lt;'.';</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line"></span><br><span class="line">		ans.push_back(u);  <span class="comment">//把该节点加入数组，，其已经是拓扑序列中的一员了 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;adj[u].size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=adj[u][i];</span><br><span class="line">			indegree[v]--;       <span class="comment">//入度减1</span></span><br><span class="line">			<span class="keyword">if</span>(indegree[v]==<span class="number">0</span>)	q.push(v); </span><br><span class="line">		&#125;</span><br><span class="line">		adj[u].clear();  <span class="comment">//清空从这条边出去的所有边 </span></span><br><span class="line">		num++;     <span class="comment">//加入拓扑序列的顶点数加1 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(num==n)	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span>	<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		adj[x].push_back(y);</span><br><span class="line">		indegree[y]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> flag = topologicalSort();</span><br><span class="line">	<span class="keyword">if</span>(flag)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> i : ans)	<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">else</span>	<span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -412,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/04/echo%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="echo服务器">
-                <i class="fa fa-chevron-left"></i> echo服务器
+              <a href="/2019/11/14/Trie/" rel="next" title="Trie">
+                <i class="fa fa-chevron-left"></i> Trie
               </a>
             
           </div>
@@ -421,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="prev" title="排序算法">
-                排序算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -478,17 +470,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -569,22 +552,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找"><span class="nav-number">1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找-将区间分为-left-mid-1-mid-right"><span class="nav-number">2.</span> <span class="nav-text">二分查找(将区间分为[left,mid-1],[mid, right])</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找-将区间分为-left-mid-mid-1-right"><span class="nav-number">3.</span> <span class="nav-text">二分查找(将区间分为[left, mid],[mid+1, right])</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浮点数二分"><span class="nav-number">4.</span> <span class="nav-text">浮点数二分</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
