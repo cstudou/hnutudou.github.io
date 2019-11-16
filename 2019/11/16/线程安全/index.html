@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法," />
+  <meta name="keywords" content="Linux C/C++,网络编程," />
 
 
 
@@ -81,16 +81,19 @@
 
 
 
-<meta name="description" content="简介： 字符串前缀哈希法">
-<meta name="keywords" content="C++,算法">
+<meta name="description" content="简介： 并发问题-线程安全">
+<meta name="keywords" content="Linux C&#x2F;C++,网络编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串哈希">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C&#x2F;index.html">
+<meta property="og:title" content="线程安全">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="简介： 字符串前缀哈希法">
+<meta property="og:description" content="简介： 并发问题-线程安全">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-06T13:55:33.932Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;MwqPiR.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;MwONPs.png">
+<meta property="og:updated_time" content="2019-11-16T05:10:44.425Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;MwqPiR.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/06/字符串哈希/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/16/线程安全/"/>
 
 
 
 
 
-  <title>字符串哈希 | Tudou</title>
+  <title>线程安全 | Tudou</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">字符串哈希</h1>
+          <h1 class="post-title" itemprop="name headline">线程安全</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T21:28:24+08:00">
-                2019-11-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-16T12:28:19+08:00">
+                2019-11-16
               </time>
             
 
@@ -305,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">算法笔记</span>
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
                   </a>
                 </span>
 
@@ -336,7 +339,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  296
+                  561
                 </span>
               
 
@@ -352,7 +355,7 @@
                   <span class="post-meta-item-text"> 阅读时长&asymp;</span>
                 
                 <span title="Reading time">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -373,10 +376,23 @@
       
 
       
-        <p>简介： 字符串前缀哈希法</p>
+        <p>简介： 并发问题-线程安全</p>
 <a id="more"></a>
-<p>&emsp;&emsp;判断一个字符串两段字符是否相等</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要人品足够好，保证没有冲突现象发生 </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ULL;		<span class="comment">//溢出相当于取模 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100010</span>,P=<span class="number">131</span>;  <span class="comment">//p=131或者13331为经验值 ,若哈希值特别大，则需要取模，对2^64取模为经验值 </span></span><br><span class="line">ULL p[maxn],h[maxn];</span><br><span class="line"><span class="keyword">char</span> str[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function">ULL <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span>  <span class="comment">//结果溢出即为取模 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h[r]-h[l<span class="number">-1</span>]*p[r-l+<span class="number">1</span>];           <span class="comment">//公式	高位|--------l-1----相当于乘10的n次-------r|低位  </span></span><br><span class="line">	<span class="comment">//参数为1-l哈希值，1-r哈希值 </span></span><br><span class="line"> &#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;str+<span class="number">1</span>;</span><br><span class="line">	p[<span class="number">0</span>]=<span class="number">1</span>;          <span class="comment">//p的0次方等于1 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		p[i]=p[i<span class="number">-1</span>]*P;             <span class="comment">//预处理p数组，，用于字符串哈希，相当于p进制 </span></span><br><span class="line">		h[i]=h[i<span class="number">-1</span>]*P + str[i];     <span class="comment">//计算哈希值 ，a*p^0 + b*p^2+..... 并且不断取模 </span></span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l1,r1,l2,r2;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;l1&gt;&gt;r1&gt;&gt;l2&gt;&gt;r2;</span><br><span class="line">		<span class="keyword">if</span>(get(l1,r1)==get(l2,r2))	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#线程安全：<br>&emsp;&emsp;线程安全：当一个函数被多个并发线程反复调用时，它会一直产生正确的结果，则这个函数是线程安全的。<br>&emsp;&emsp;不安全函数类：</p>
+<ul>
+<li>不保护共享变量的函数</li>
+<li>保持跨越多个调用的状态的函数</li>
+<li>返回静态变量的指针的函数</li>
+<li>调用线程不安全函数的函数</li>
+</ul>
+<h1 id="可重入函数"><a href="#可重入函数" class="headerlink" title="可重入函数"></a>可重入函数</h1><p>&emsp;&emsp;可重入函数性质：当它们被多个线程调用时，不会引用任何共享数据。<br><img src="https://s2.ax1x.com/2019/11/16/MwqPiR.jpg" alt=""><br>&emsp;&emsp;显式可重入：所有数据引用都是本地的自动栈变量（没有引用静态或者全局变量）<br>&emsp;&emsp;隐式可重入：显式可重入函数中有一些参数是引用传递的，但其不是指向共享变量的指针<br>&emsp;&emsp;标准 C 库中的函数都是线程安全的（如 malloc, free, printf, scanf），大多数 Unix 的系统调用也都是线程安全的</p>
+<h1 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h1><p>&emsp;&emsp;当一个程序的正确性依赖于一个线程要在另一个线程到达y点之前到达它的控制流中的x点时，就会发生竞争。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 4</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread</span><span class="params">(<span class="keyword">void</span> *vargp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> mytid=*((<span class="keyword">int</span> *)vargp);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"hello from thread %d\n"</span>, mytid);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">pthread_t</span> tid[N]; </span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		pthread_create(&amp;tid[i], <span class="literal">NULL</span>, thread, &amp;i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		pthread_join(tid[i], <span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2019/11/16/MwONPs.png" alt=""><br>&emsp;&emsp;竞争出现在第14行和第6行，如果在for循环之前就输出了i，则是正确的结果，如若不然，就会失败。<br>&emsp;&emsp;改进后的函数，给每个i都开辟一个单独的存储空间</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span><span class="comment">; i&lt;N; i++)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">ptr</span>=(<span class="built_in">int</span> *)malloc(sizeof(<span class="built_in">int</span>))<span class="comment">;</span></span><br><span class="line">	*<span class="built_in">ptr</span>=i<span class="comment">;</span></span><br><span class="line">	pthread_create(&amp;tid[i], <span class="literal">NULL</span>, thread, <span class="built_in">ptr</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>&emsp;&emsp;指的是一组线程被阻塞了，等待一个永远不会为真的条件，<br>&emsp;&emsp;互斥锁加锁规则：给定所有互斥操作的一个全序，如果每个线程都是以一种顺序获得互斥锁并且以相反的顺序释放，则这个程序是无死锁的。</p>
+
       
     </div>
     
@@ -393,9 +409,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+            <a href="/tags/Linux-C-C/"<i class="fa fa-tag"></i> Linux C/C++</a>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/"<i class="fa fa-tag"></i> 算法</a>
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"<i class="fa fa-tag"></i> 网络编程</a>
           
         </div>
       
@@ -408,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/06/KMP/" rel="next" title="KMP">
-                <i class="fa fa-chevron-left"></i> KMP
+              <a href="/2019/11/15/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" rel="next" title="拓扑排序">
+                <i class="fa fa-chevron-left"></i> 拓扑排序
               </a>
             
           </div>
@@ -417,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/07/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="prev" title="线程同步">
-                线程同步 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -556,6 +577,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可重入函数"><span class="nav-number">1.</span> <span class="nav-text">可重入函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#竞争"><span class="nav-number">2.</span> <span class="nav-text">竞争</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁"><span class="nav-number">3.</span> <span class="nav-text">死锁</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
