@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>文件I/O</title>
+    <url>/2019/11/17/%E6%96%87%E4%BB%B6I-O/</url>
+    <content><![CDATA[<p>简介： APUE第三章-文件I/O</p>
+<a id="more"></a>
+<h1 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h1><p>对内核而言，所有打开的文件都通过文件描述符引用，当打开一个现有文件或者创建一个新文件时，内核会向进程返回文件描述符。</p>
+<p>UNIX系统shell把文件描述符0与标准输入关联，文件描述符1与标准输出关联，文件描述符2与标准错误管理。0，1，2分别用STDIN_FILENO,STDOUT_FILENO,STDERR_FILENO表示（头文件为<code>&lt;unistd.h&gt;</code>）。</p>
+<h1 id="函数open与openat"><a href="#函数open与openat" class="headerlink" title="函数open与openat"></a>函数open与openat</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *path, <span class="keyword">int</span> oflag, ...<span class="comment">/*mode_t mode*/</span>)</span></span>;</span><br><span class="line"><span class="comment">//对于open，只有新创建文件时，最后的权限位才被声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">openat</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">char</span> *path, <span class="keyword">int</span> oflag, ...<span class="comment">/*mode_t mode*/</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>参数path：要打开或者创建的文件名<br>参数oflag:<br>&emsp;&emsp;O_RDONLY&emsp;&emsp;只读打开<br>&emsp;&emsp;O_WRONLY&emsp;&emsp;只写打开<br>&emsp;&emsp;O_RDWR&emsp;&emsp;读、写打开<br>&emsp;&emsp;O_EXEC&emsp;&emsp;只执行打开<br>&emsp;&emsp;O_SEARCH&emsp;&emsp;只搜索打开（应用于目录）<br>以上五个参数必须指定一个<br>&emsp;&emsp;O_APPEND&emsp;&emsp;每次写都追加到文件末尾<br>&emsp;&emsp;O_CREAT&emsp;&emsp;若文件不存在则创建，使用open时必须指定权限位<br>&emsp;&emsp;O_TRUNC&emsp;&emsp;若文件存在，而且为只写或读写成功打开，则将其长度截断为0<br>以上参数为可选</p>
+]]></content>
+      <categories>
+        <category>APUE</category>
+      </categories>
+      <tags>
+        <tag>Linux C/C++</tag>
+        <tag>APUE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线程安全</title>
     <url>/2019/11/16/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/</url>
     <content><![CDATA[<p>简介： 并发问题-线程安全</p>
