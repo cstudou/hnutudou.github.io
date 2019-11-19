@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C++随机数</title>
+    <url>/2019/11/19/C-%E9%9A%8F%E6%9C%BA%E6%95%B0/</url>
+    <content><![CDATA[<p>简介： C++如何生成随机数</p>
+<a id="more"></a>
+<h1 id="随机数引擎"><a href="#随机数引擎" class="headerlink" title="随机数引擎"></a>随机数引擎</h1><p>&emsp;&emsp;头文件<code>&lt;random&gt;</code><br>&emsp;&emsp;定义一个<code>default_random_engine</code>对象，调用它就能获得随机数</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">default_random_engine e<span class="comment">;</span></span><br><span class="line">cout&lt;&lt;e()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2019/11/19/M2TXY8.jpg" alt=""></p>
+<h1 id="分布类型"><a href="#分布类型" class="headerlink" title="分布类型"></a>分布类型</h1><p>&emsp;&emsp;使用分布类型可以的到某一个范围内的随机数</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">uniform_int_distribution&lt;unsigned&gt; u(<span class="number">0</span>,<span class="number">9</span>);</span><br><span class="line">cout&lt;&lt;u(e);</span><br><span class="line"><span class="comment">//生成均匀分布的unsigned类型的【0，9】之间的值</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="设置随机数种子"><a href="#设置随机数种子" class="headerlink" title="设置随机数种子"></a>设置随机数种子</h1><figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">default_random_engine</span> <span class="function"><span class="title">e</span>(<span class="title"><span class="built_in">time</span></span>(<span class="variable"><span class="literal">NULL</span></span>));</span></span><br><span class="line"><span class="function"><span class="variable">e.seed</span>(<span class="title"><span class="built_in">time</span></span>(<span class="variable"><span class="literal">NULL</span></span>));</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生成随机实数"><a href="#生成随机实数" class="headerlink" title="生成随机实数"></a>生成随机实数</h1><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">uniform_real_distribution&lt;<span class="built_in">double</span>&gt; u(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">cout&lt;&lt;u(e);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;空尖括号默认代表为double</p>
+<h1 id="生成非均匀分布的随机数"><a href="#生成非均匀分布的随机数" class="headerlink" title="生成非均匀分布的随机数"></a>生成非均匀分布的随机数</h1><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line">normal_distribution&lt;&gt; n(<span class="number">4</span>,<span class="number">1.5</span>);   <span class="comment">//均值为4，标准差为1.5</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="bernoulli-distribution类"><a href="#bernoulli-distribution类" class="headerlink" title="bernoulli_distribution类"></a>bernoulli_distribution类</h1><p>&emsp;&emsp;总是返回一个bool值，概率分别为0.5</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">default_random_engine e<span class="comment">;</span></span><br><span class="line">bernoulli_distribution b<span class="comment">;</span></span><br><span class="line">cout&lt;&lt;b(e)<span class="comment">;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二分图</title>
     <url>/2019/11/18/%E4%BA%8C%E5%88%86%E5%9B%BE/</url>
     <content><![CDATA[<p>简介： 用染色法判断二分图</p>
@@ -10,11 +36,6 @@
       <categories>
         <category>算法笔记</category>
       </categories>
-  </entry>
-  <entry>
-    <title>I/O库</title>
-    <url>/2019/11/18/I-O%E5%BA%93/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>文件I/O</title>
@@ -70,6 +91,31 @@
 <li>如果用O_APPEND标志打开一个文件，则相应的标值也被设置到文件表项的文件状态标志中</li>
 <li>若一个文件用lseek定位到文件当前的尾端，则文件表项中的当前文件偏移量首先会被设置为i节点表象中的文件长度。</li>
 </ul>
+<h1 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h1><p>&emsp;&emsp;<strong>原子操作</strong>指的是由多步组成的一个操作。如果该操作原子地执行，则要么执行完所有的步骤，要么一步也不执行，不可能只执行所有步骤的一个子集。<br>&emsp;&emsp;UNIX系统提供了一种源自操作方法，即在打开文件时设置O_APPEND标志</p>
+<h2 id="函数pread与pwrite"><a href="#函数pread与pwrite" class="headerlink" title="函数pread与pwrite"></a>函数pread与pwrite</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ssize_t</span> pread(<span class="keyword">int</span> fd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> bytes, <span class="keyword">off_t</span> offset);</span><br><span class="line"><span class="comment">//返回值：读到字节数，若已到文件尾，返回0；出错返回-1</span></span><br><span class="line"><span class="keyword">ssize_t</span> pwrite(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> nbytes, <span class="keyword">off_t</span> offset);</span><br><span class="line"><span class="comment">//返回值：若成功返回已写字节数；出错返回-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;调用pread相当于调用lseek后调用read，但区别如下</p>
+<ul>
+<li>调用pread时，无法中断其定位和读操作</li>
+<li>不能更新当前文件偏移量<br>&emsp;&emsp;调用pwrite类似</li>
+</ul>
+<h1 id="函数dup与dup2"><a href="#函数dup与dup2" class="headerlink" title="函数dup与dup2"></a>函数dup与dup2</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup</span><span class="params">(fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup2</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> fd2)</span></span>;</span><br><span class="line">/两函数的返回值：成功返回新的文件描述符；出错返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;两函数都可以用来复制一个现有的文件描述符<br>&emsp;&emsp;由dup返回的新文件描述符一定是当前可用文件描述符中的最小数值。<br>&emsp;&emsp;对于dup2，可以用fd2指定新描述符值。若fd2已经打开，则先将其关闭。若fd等于fd2，则dup2返回fd2，而不关闭它。目的是将旧的文件描述符fd复制给新的文件描述符fd2.dup2所复制的文件描述符与原来的文件描述符共享各种文件状态。共享所有的锁定，读写位置和各项权限或flags等等。</p>
+<h1 id="函数sync、fsync和fdatasync"><a href="#函数sync、fsync和fdatasync" class="headerlink" title="函数sync、fsync和fdatasync"></a>函数sync、fsync和fdatasync</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsync</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fdatasync</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sync</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;sync只是将所有修改过的块排入写队列，然后就返回，并不等待实际写磁盘操作结束。系统守护进程会周期性的调用sync。<br>&emsp;&emsp;fsync函数只对文件描述符fd指定的一个文件起作用，并且等待写磁盘操作结束后才返回<br>&emsp;&emsp;fdatasync函数类似于fsync，但它只影响文件的数据部分。除数据外，fsync还会更新文件的属性</p>
+<h1 id="函数fcntl"><a href="#函数fcntl" class="headerlink" title="函数fcntl"></a>函数fcntl</h1><p>&emsp;&emsp;fcntl函数可以改变已经打开的文件属性，使用fcntl，我们只需要知道打开文件的描述符，就可以修改描述符的属性。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcntl</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> cmd, ...<span class="comment">/* int arg*/</span>)</span></span>;</span><br><span class="line"><span class="comment">//返回值：若成功则依赖于cmd， 若出错返回-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;功能：</p>
+<ul>
+<li>复制一个已有的描述符 （cmd=F_DUPFD 或 F_DUPFD_CLOEXEC）</li>
+<li>获取/设置文件描述符标志（cmd=F_GETFD 或 F_SETFD）</li>
+<li>获取/设置文件状态标志（cmd=F_GETFL 或 F_SETFL）</li>
+<li>获取/设置异步I/O所有权（cmd=F_GETOWN 或 F_SETOWN）</li>
+<li>获取/设置记录锁（cmd=F_GETLK、F_SETLK 或 F_SETLKW）<br><img src="https://s1.ax1x.com/2019/11/19/MgOYuQ.jpg" alt=""><br><img src="https://s1.ax1x.com/2019/11/19/MgOtBj.png" alt=""></li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">include</span> &lt;fcntl.h&gt;</span><br><span class="line"></span><br><span class="line">void set<span class="constructor">_fl(<span class="params">int</span> <span class="params">fd</span>, <span class="params">int</span> <span class="params">flags</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="keyword">val</span>;</span><br><span class="line">	<span class="keyword">if</span>((<span class="keyword">val</span>=fcntl(fd, F_GETFL, <span class="number">0</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">		err<span class="constructor">_sys(<span class="string">"fcntl F_GETFL error"</span>)</span>;</span><br><span class="line">	<span class="keyword">val</span> <span class="pattern-match">|= flags;   <span class="operator">/</span><span class="operator">/</span>设置新的文件属性</span></span><br><span class="line"><span class="pattern-match">	<span class="keyword">if</span>(fcntl(fd, <span class="constructor">F_SETFL</span>, <span class="keyword">val</span>) &lt; 0)</span></span><br><span class="line"><span class="pattern-match">		err<span class="constructor">_sys(<span class="string">"fcntl F_SETFL error"</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数ioctl"><a href="#函数ioctl" class="headerlink" title="函数ioctl"></a>函数ioctl</h1><figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/iocntl.h&gt;</span></span></span><br><span class="line"><span class="built_in">int</span> ioctl(<span class="built_in">int</span> fd, <span class="built_in">int</span> request, ...)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;ioctl函数一直是I/O操作的杂物箱，许多不能用其他函数表示的I/O操作通常可以用ioctl表示。每个设备驱动程序可以定义它自己专用的一组ioctl命令</p>
 ]]></content>
       <categories>
         <category>APUE</category>

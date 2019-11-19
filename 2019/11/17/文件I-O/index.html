@@ -92,7 +92,9 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;M6Zqdf.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;M6lTVs.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;M63zNR.png">
-<meta property="og:updated_time" content="2019-11-18T08:59:51.054Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;MgOYuQ.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;MgOtBj.png">
+<meta property="og:updated_time" content="2019-11-19T09:22:53.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;M6Zqdf.png">
 
@@ -345,7 +347,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  1.7k
+                  2.6k
                 </span>
               
 
@@ -361,7 +363,7 @@
                   <span class="post-meta-item-text"> 阅读时长&asymp;</span>
                 
                 <span title="Reading time">
-                  6分钟
+                  10分钟
                 </span>
               
             </div>
@@ -433,6 +435,31 @@
 <li>如果用O_APPEND标志打开一个文件，则相应的标值也被设置到文件表项的文件状态标志中</li>
 <li>若一个文件用lseek定位到文件当前的尾端，则文件表项中的当前文件偏移量首先会被设置为i节点表象中的文件长度。</li>
 </ul>
+<h1 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h1><p>&emsp;&emsp;<strong>原子操作</strong>指的是由多步组成的一个操作。如果该操作原子地执行，则要么执行完所有的步骤，要么一步也不执行，不可能只执行所有步骤的一个子集。<br>&emsp;&emsp;UNIX系统提供了一种源自操作方法，即在打开文件时设置O_APPEND标志</p>
+<h2 id="函数pread与pwrite"><a href="#函数pread与pwrite" class="headerlink" title="函数pread与pwrite"></a>函数pread与pwrite</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ssize_t</span> pread(<span class="keyword">int</span> fd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> bytes, <span class="keyword">off_t</span> offset);</span><br><span class="line"><span class="comment">//返回值：读到字节数，若已到文件尾，返回0；出错返回-1</span></span><br><span class="line"><span class="keyword">ssize_t</span> pwrite(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> nbytes, <span class="keyword">off_t</span> offset);</span><br><span class="line"><span class="comment">//返回值：若成功返回已写字节数；出错返回-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;调用pread相当于调用lseek后调用read，但区别如下</p>
+<ul>
+<li>调用pread时，无法中断其定位和读操作</li>
+<li>不能更新当前文件偏移量<br>&emsp;&emsp;调用pwrite类似</li>
+</ul>
+<h1 id="函数dup与dup2"><a href="#函数dup与dup2" class="headerlink" title="函数dup与dup2"></a>函数dup与dup2</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup</span><span class="params">(fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup2</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> fd2)</span></span>;</span><br><span class="line">/两函数的返回值：成功返回新的文件描述符；出错返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;两函数都可以用来复制一个现有的文件描述符<br>&emsp;&emsp;由dup返回的新文件描述符一定是当前可用文件描述符中的最小数值。<br>&emsp;&emsp;对于dup2，可以用fd2指定新描述符值。若fd2已经打开，则先将其关闭。若fd等于fd2，则dup2返回fd2，而不关闭它。目的是将旧的文件描述符fd复制给新的文件描述符fd2.dup2所复制的文件描述符与原来的文件描述符共享各种文件状态。共享所有的锁定，读写位置和各项权限或flags等等。</p>
+<h1 id="函数sync、fsync和fdatasync"><a href="#函数sync、fsync和fdatasync" class="headerlink" title="函数sync、fsync和fdatasync"></a>函数sync、fsync和fdatasync</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsync</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fdatasync</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sync</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;sync只是将所有修改过的块排入写队列，然后就返回，并不等待实际写磁盘操作结束。系统守护进程会周期性的调用sync。<br>&emsp;&emsp;fsync函数只对文件描述符fd指定的一个文件起作用，并且等待写磁盘操作结束后才返回<br>&emsp;&emsp;fdatasync函数类似于fsync，但它只影响文件的数据部分。除数据外，fsync还会更新文件的属性</p>
+<h1 id="函数fcntl"><a href="#函数fcntl" class="headerlink" title="函数fcntl"></a>函数fcntl</h1><p>&emsp;&emsp;fcntl函数可以改变已经打开的文件属性，使用fcntl，我们只需要知道打开文件的描述符，就可以修改描述符的属性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcntl</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> cmd, ...<span class="comment">/* int arg*/</span>)</span></span>;</span><br><span class="line"><span class="comment">//返回值：若成功则依赖于cmd， 若出错返回-1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;功能：</p>
+<ul>
+<li>复制一个已有的描述符 （cmd=F_DUPFD 或 F_DUPFD_CLOEXEC）</li>
+<li>获取/设置文件描述符标志（cmd=F_GETFD 或 F_SETFD）</li>
+<li>获取/设置文件状态标志（cmd=F_GETFL 或 F_SETFL）</li>
+<li>获取/设置异步I/O所有权（cmd=F_GETOWN 或 F_SETOWN）</li>
+<li>获取/设置记录锁（cmd=F_GETLK、F_SETLK 或 F_SETLKW）<br><img src="https://s1.ax1x.com/2019/11/19/MgOYuQ.jpg" alt=""><br><img src="https://s1.ax1x.com/2019/11/19/MgOtBj.png" alt=""></li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">include</span> &lt;fcntl.h&gt;</span><br><span class="line"></span><br><span class="line">void set<span class="constructor">_fl(<span class="params">int</span> <span class="params">fd</span>, <span class="params">int</span> <span class="params">flags</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="keyword">val</span>;</span><br><span class="line">	<span class="keyword">if</span>((<span class="keyword">val</span>=fcntl(fd, F_GETFL, <span class="number">0</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">		err<span class="constructor">_sys(<span class="string">"fcntl F_GETFL error"</span>)</span>;</span><br><span class="line">	<span class="keyword">val</span> <span class="pattern-match">|= flags;   <span class="operator">/</span><span class="operator">/</span>设置新的文件属性</span></span><br><span class="line"><span class="pattern-match">	<span class="keyword">if</span>(fcntl(fd, <span class="constructor">F_SETFL</span>, <span class="keyword">val</span>) &lt; 0)</span></span><br><span class="line"><span class="pattern-match">		err<span class="constructor">_sys(<span class="string">"fcntl F_SETFL error"</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数ioctl"><a href="#函数ioctl" class="headerlink" title="函数ioctl"></a>函数ioctl</h1><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/iocntl.h&gt;</span></span></span><br><span class="line"><span class="built_in">int</span> ioctl(<span class="built_in">int</span> fd, <span class="built_in">int</span> request, ...)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;ioctl函数一直是I/O操作的杂物箱，许多不能用其他函数表示的I/O操作通常可以用ioctl表示。每个设备驱动程序可以定义它自己专用的一组ioctl命令</p>
 
       
     </div>
@@ -475,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/18/I-O%E5%BA%93/" rel="prev" title="I/O库">
-                I/O库 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/18/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="prev" title="二分图">
+                二分图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +598,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -632,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件描述符"><span class="nav-number">1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数open与openat"><span class="nav-number">2.</span> <span class="nav-text">函数open与openat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数creat"><span class="nav-number">3.</span> <span class="nav-text">函数creat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数close"><span class="nav-number">4.</span> <span class="nav-text">函数close</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数lseek"><span class="nav-number">5.</span> <span class="nav-text">函数lseek</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数read"><span class="nav-number">6.</span> <span class="nav-text">函数read</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数write"><span class="nav-number">7.</span> <span class="nav-text">函数write</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件共享"><span class="nav-number">8.</span> <span class="nav-text">文件共享</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件描述符"><span class="nav-number">1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数open与openat"><span class="nav-number">2.</span> <span class="nav-text">函数open与openat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数creat"><span class="nav-number">3.</span> <span class="nav-text">函数creat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数close"><span class="nav-number">4.</span> <span class="nav-text">函数close</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数lseek"><span class="nav-number">5.</span> <span class="nav-text">函数lseek</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数read"><span class="nav-number">6.</span> <span class="nav-text">函数read</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数write"><span class="nav-number">7.</span> <span class="nav-text">函数write</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件共享"><span class="nav-number">8.</span> <span class="nav-text">文件共享</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原子操作"><span class="nav-number">9.</span> <span class="nav-text">原子操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数pread与pwrite"><span class="nav-number">9.1.</span> <span class="nav-text">函数pread与pwrite</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数dup与dup2"><span class="nav-number">10.</span> <span class="nav-text">函数dup与dup2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数sync、fsync和fdatasync"><span class="nav-number">11.</span> <span class="nav-text">函数sync、fsync和fdatasync</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数fcntl"><span class="nav-number">12.</span> <span class="nav-text">函数fcntl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数ioctl"><span class="nav-number">13.</span> <span class="nav-text">函数ioctl</span></a></li></ol></div>
             
 
           </div>

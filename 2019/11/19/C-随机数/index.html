@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="study &amp; life">
-<meta name="keywords" content="CS">
+<meta name="description" content="简介： C++如何生成随机数">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="I&#x2F;O库">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;I-O%E5%BA%93&#x2F;index.html">
+<meta property="og:title" content="C++随机数">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;C-%E9%9A%8F%E6%9C%BA%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="Tudou">
-<meta property="og:description" content="study &amp; life">
+<meta property="og:description" content="简介： C++如何生成随机数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-18T11:55:03.834Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;M2TXY8.jpg">
+<meta property="og:updated_time" content="2019-11-19T12:24:48.469Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;M2TXY8.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/18/I-O库/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/19/C-随机数/"/>
 
 
 
 
 
-  <title>I/O库 | Tudou</title>
+  <title>C++随机数 | Tudou</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/18/I-O%E5%BA%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/C-%E9%9A%8F%E6%9C%BA%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tudou">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">I/O库</h1>
+          <h1 class="post-title" itemprop="name headline">C++随机数</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-18T19:55:03+08:00">
-                2019-11-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-19T20:10:47+08:00">
+                2019-11-19
               </time>
             
 
@@ -292,6 +294,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,7 +343,7 @@
                   <span class="post-meta-item-text">本文字数:</span>
                 
                 <span title="Words count in article">
-                  0
+                  206
                 </span>
               
 
@@ -356,7 +380,22 @@
       
 
       
-        
+        <p>简介： C++如何生成随机数</p>
+<a id="more"></a>
+<h1 id="随机数引擎"><a href="#随机数引擎" class="headerlink" title="随机数引擎"></a>随机数引擎</h1><p>&emsp;&emsp;头文件<code>&lt;random&gt;</code><br>&emsp;&emsp;定义一个<code>default_random_engine</code>对象，调用它就能获得随机数</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e<span class="comment">;</span></span><br><span class="line">cout&lt;&lt;e()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2019/11/19/M2TXY8.jpg" alt=""></p>
+<h1 id="分布类型"><a href="#分布类型" class="headerlink" title="分布类型"></a>分布类型</h1><p>&emsp;&emsp;使用分布类型可以的到某一个范围内的随机数</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uniform_int_distribution&lt;unsigned&gt; u(<span class="number">0</span>,<span class="number">9</span>);</span><br><span class="line">cout&lt;&lt;u(e);</span><br><span class="line"><span class="comment">//生成均匀分布的unsigned类型的【0，9】之间的值</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="设置随机数种子"><a href="#设置随机数种子" class="headerlink" title="设置随机数种子"></a>设置随机数种子</h1><figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">default_random_engine</span> <span class="function"><span class="title">e</span>(<span class="title"><span class="built_in">time</span></span>(<span class="variable"><span class="literal">NULL</span></span>));</span></span><br><span class="line"><span class="function"><span class="variable">e.seed</span>(<span class="title"><span class="built_in">time</span></span>(<span class="variable"><span class="literal">NULL</span></span>));</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生成随机实数"><a href="#生成随机实数" class="headerlink" title="生成随机实数"></a>生成随机实数</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uniform_real_distribution&lt;<span class="built_in">double</span>&gt; u(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">cout&lt;&lt;u(e);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;空尖括号默认代表为double</p>
+<h1 id="生成非均匀分布的随机数"><a href="#生成非均匀分布的随机数" class="headerlink" title="生成非均匀分布的随机数"></a>生成非均匀分布的随机数</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line">normal_distribution&lt;&gt; n(<span class="number">4</span>,<span class="number">1.5</span>);   <span class="comment">//均值为4，标准差为1.5</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="bernoulli-distribution类"><a href="#bernoulli-distribution类" class="headerlink" title="bernoulli_distribution类"></a>bernoulli_distribution类</h1><p>&emsp;&emsp;总是返回一个bool值，概率分别为0.5</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e<span class="comment">;</span></span><br><span class="line">bernoulli_distribution b<span class="comment">;</span></span><br><span class="line">cout&lt;&lt;b(e)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -371,6 +410,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
 
       
       
@@ -380,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/17/%E6%96%87%E4%BB%B6I-O/" rel="next" title="文件I/O">
-                <i class="fa fa-chevron-left"></i> 文件I/O
+              <a href="/2019/11/18/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="next" title="二分图">
+                <i class="fa fa-chevron-left"></i> 二分图
               </a>
             
           </div>
@@ -389,10 +434,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/18/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="prev" title="二分图">
-                二分图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -477,7 +527,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -528,6 +578,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#随机数引擎"><span class="nav-number">1.</span> <span class="nav-text">随机数引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布类型"><span class="nav-number">2.</span> <span class="nav-text">分布类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置随机数种子"><span class="nav-number">3.</span> <span class="nav-text">设置随机数种子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成随机实数"><span class="nav-number">4.</span> <span class="nav-text">生成随机实数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成非均匀分布的随机数"><span class="nav-number">5.</span> <span class="nav-text">生成非均匀分布的随机数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bernoulli-distribution类"><span class="nav-number">6.</span> <span class="nav-text">bernoulli_distribution类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
