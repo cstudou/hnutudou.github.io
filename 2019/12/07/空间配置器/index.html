@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,SQL源码剖析," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tudou" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="简介： sql模板空间适配器">
+<meta name="keywords" content="C++,SQL源码剖析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空间配置器">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE%E5%99%A8&#x2F;index.html">
+<meta property="og:site_name" content="Tudou">
+<meta property="og:description" content="简介： sql模板空间适配器">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-07T09:13:15.778Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/07/空间配置器/"/>
+
+
+
+
+
+  <title>空间配置器 | Tudou</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tudou</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">study & life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tudou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tudou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">空间配置器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-07T17:05:54+08:00">
+                2019-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数:</span>
+                
+                <span title="Words count in article">
+                  802
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text"> 阅读时长&asymp;</span>
+                
+                <span title="Reading time">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简介： sql模板空间适配器</p>
+<a id="more"></a>
+<h1 id="自定义版本"><a href="#自定义版本" class="headerlink" title="自定义版本"></a>自定义版本</h1><h2 id="sql-h"><a href="#sql-h" class="headerlink" title="sql.h"></a>sql.h</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">#pragma once</span><br><span class="line">#include &lt;new&gt;</span><br><span class="line">#include &lt;cstddef&gt;  <span class="comment">//for ptrdiff_t, size_t</span></span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;climits&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="symbol">JJ</span></span><br><span class="line">&#123;</span><br><span class="line">	template &lt;<span class="keyword">class</span> <span class="symbol">T</span>&gt;</span><br><span class="line">	<span class="symbol">inline</span> <span class="symbol">T</span>* <span class="symbol">_allocate</span>(<span class="symbol">ptrdiff_t</span> <span class="symbol">size, <span class="symbol">T</span></span>*)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//ptrdiff_t是C/C++标准库中定义的一个与机器相关的数据类型。ptrdiff_t类型变量通常用来保存两个指针减法操作的结果。</span></span><br><span class="line">		std::set_new_handler(NULL);</span><br><span class="line">		<span class="comment">//set_new_handler函数的作用是设置new_p指向的函数为new操作或new[]操作失败时调用的处理函数。</span></span><br><span class="line">		<span class="comment">//若参数是一个空指针，处理函数将被重置为默认值（将会执行抛出bad_alloc异常）</span></span><br><span class="line">		T* tmp = (T*)(::operator new((size_t)(size * sizeof(T))));</span><br><span class="line">		<span class="comment">/******</span></span><br><span class="line"><span class="comment">			当我们在C++中使用new 和delete时，其实执行的是全局的::operator new和::operator delete</span></span><br><span class="line"><span class="comment">			对于new来说，有new和::new之分，前者位于std</span></span><br><span class="line"><span class="comment">			operator new()：指对new的重载形式，它是一个函数，并不是运算符</span></span><br><span class="line"><span class="comment">			全局重载是void* ::operator new(size_t size)，在类中重载形式 void* A::operator new(size_t size)</span></span><br><span class="line"><span class="comment">			分配内存这一操作就是由operator new(size_t)来完成的，如果类A重载了operator new，那么将调用A::operator new(size_t )，如果没有重载，就调用::operator new(size_t )</span></span><br><span class="line"><span class="comment">		****/</span></span><br><span class="line">		<span class="keyword">if</span> (tmp == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			std::cerr &lt;&lt; <span class="string">"out of memory"</span> &lt;&lt; std::endl;</span><br><span class="line">			exit(<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	template &lt;<span class="keyword">class</span> <span class="symbol">T</span>&gt;</span><br><span class="line">	<span class="symbol">inline</span> <span class="symbol">void</span> <span class="symbol">_deallocate</span>(<span class="symbol">T</span>* <span class="symbol">buffer</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		::operator delete(buffer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	template &lt;<span class="keyword">class</span> <span class="symbol">T1, <span class="symbol">class</span></span> <span class="symbol">T2</span>&gt;</span><br><span class="line">	<span class="symbol">inline</span> <span class="symbol">void</span> <span class="symbol">_construct</span>(<span class="symbol">T1</span>* <span class="symbol">p, <span class="symbol">const</span></span> <span class="symbol">T2</span>&amp; <span class="symbol">value</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//这个操作叫做placement new，就是在指针p所指向的内存空间创建一个T1类型的对象，</span></span><br><span class="line">		<span class="comment">//但是对象的内容是从T2类型的对象转换过来的（调用了T1的构造函数，T1::T1(value)）</span></span><br><span class="line">		new(p) T1(value);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	template &lt;<span class="keyword">class</span> <span class="symbol">T</span>&gt;</span><br><span class="line">	<span class="symbol">inline</span> <span class="symbol">void</span> <span class="symbol">_destroy</span>(<span class="symbol">T</span>* <span class="symbol">ptr</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		ptr-&gt;~T();</span><br><span class="line">	&#125;</span><br><span class="line">	template &lt;<span class="keyword">class</span> <span class="symbol">T</span>&gt;</span><br><span class="line">	<span class="symbol">class</span> <span class="symbol">allocator</span></span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">typedef</span> T 			value_type;</span><br><span class="line">		<span class="keyword">typedef</span> T* pointer;</span><br><span class="line">		<span class="keyword">typedef</span> <span class="keyword">const</span> T* const_pointer;</span><br><span class="line">		<span class="keyword">typedef</span> T&amp; <span class="built_in">ref</span>erence;</span><br><span class="line">		<span class="keyword">typedef</span> <span class="keyword">const</span> T&amp; const_reference;</span><br><span class="line">		<span class="keyword">typedef</span> size_t 		size_type;</span><br><span class="line">		<span class="keyword">typedef</span> ptrdiff_t	difference_type;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 加入拷贝构造函数</span></span><br><span class="line">		allocator() = <span class="keyword">default</span>;</span><br><span class="line">		template &lt;<span class="keyword">class</span> <span class="symbol">U</span>&gt;   //<span class="symbol">Add</span> <span class="symbol">new</span></span><br><span class="line">		<span class="symbol">allocator</span>(<span class="symbol">const</span> <span class="symbol">allocator</span>&lt;<span class="symbol">U</span>&gt;&amp; <span class="symbol">c</span>) &#123; &#125;</span><br><span class="line">		<span class="comment">//允许一种类型的对象的分配器为另一种类型的对象分配存储的结构。</span></span><br><span class="line">		template &lt;<span class="keyword">class</span> <span class="symbol">U</span>&gt;</span><br><span class="line">		<span class="symbol">struct</span> <span class="symbol">rebind</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">typedef</span> allocator&lt;U&gt; other;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="comment">//配置空间，足以存储n个T对象。第二参数是个提示。实现上可能会利用它来增进区域性，或完全忽略之。</span></span><br><span class="line">		pointer allocate(size_type n, <span class="keyword">const</span> <span class="built_in">void</span>* hint = <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> _allocate((difference_type)n, (pointer)<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//归还先前配置的空间</span></span><br><span class="line">		<span class="built_in">void</span> deallocate(pointer p, size_type n)</span><br><span class="line">		&#123;</span><br><span class="line">			_deallocate(p);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//等同于new((void *)p) T(x)</span></span><br><span class="line">		<span class="built_in">void</span> construct(pointer p, <span class="keyword">const</span> T&amp; value)</span><br><span class="line">		&#123;</span><br><span class="line">			_construct(p, value);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">void</span> destroy(pointer p)</span><br><span class="line">		&#123;</span><br><span class="line">			_destroy(p);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//返回某个对象的地址。算式a.address(x)等同于&amp;x</span></span><br><span class="line">		pointer address(<span class="built_in">ref</span>erence x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> (pointer)&amp;x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//返回某个const对象的地址。算式a.address(x)等同于&amp;x</span></span><br><span class="line">		const_pointer const_address(const_reference x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> (const_reference)&amp;x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//返回可成功配置的最大量</span></span><br><span class="line">		size_type max_size() <span class="keyword">const</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> size_type(UINT_MAX / sizeof(T));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sql-cpp"><a href="#sql-cpp" class="headerlink" title="sql.cpp"></a>sql.cpp</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stl.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ia[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>, JJ::allocator&lt;<span class="keyword">int</span>&gt; &gt; iv(ia, ia + <span class="number">5</span>);</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; iv.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; iv[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/"<i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/SQL%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/"<i class="fa fa-tag"></i> SQL源码剖析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/19/C-%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="next" title="C++随机数">
+                <i class="fa fa-chevron-left"></i> C++随机数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p2.so.qhmsg.com/t010d44e4aa0fd98f91.jpg"
+                alt="Tudou" />
+            
+              <p class="site-author-name" itemprop="name">Tudou</p>
+              <p class="site-description motion-element" itemprop="description">study & life</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hnutudou" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义版本"><span class="nav-number">1.</span> <span class="nav-text">自定义版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-h"><span class="nav-number">1.1.</span> <span class="nav-text">sql.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-cpp"><span class="nav-number">1.2.</span> <span class="nav-text">sql.cpp</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tudou</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
